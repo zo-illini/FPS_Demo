@@ -1,0 +1,61 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MovementComponent : MonoBehaviour
+{
+    // Start is called before the first frame update
+
+    float m_speed;
+
+    float m_jumpForce;
+
+    float m_rotationSpeed;
+
+    Rigidbody m_rb;
+
+    CapsuleCollider m_collider;
+
+    void Start()
+    {
+        m_rb = GetComponent<Rigidbody>();
+        m_collider = GetComponent<CapsuleCollider>();
+
+        m_speed = 5;
+        m_rotationSpeed = 360;
+        m_jumpForce = 200;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void HandleMovementXZ(Vector3 movement)
+    {
+        transform.Translate(movement * m_speed * Time.deltaTime, Space.Self);
+    }
+
+    public void HandleJump(Vector3 vector)
+    {
+        if (IsGrounded())
+        {
+            m_rb.AddForce(vector * m_jumpForce, ForceMode.Acceleration);
+        }
+    }
+
+    public void HandleRotation(Vector2 vector)
+    {
+        transform.RotateAround (transform.position, Vector3.up, vector.x * m_rotationSpeed * Time.deltaTime); 
+        //transform.RotateAround (Vector3.zero, transform.right, vector.y * m_rotationSpeed);
+    }
+
+    public bool IsGrounded()
+    {
+        Vector3 start = m_collider.transform.TransformPoint(m_collider.center + Vector3.up * m_collider.height);
+        Vector3 end = m_collider.transform.TransformPoint(m_collider.center + Vector3.down * 0.5f * m_collider.height);
+
+        return Physics.CheckSphere(end + Vector3.down * 0.1f, m_collider.radius, LayerMask.GetMask("Ground"));
+    }
+}
