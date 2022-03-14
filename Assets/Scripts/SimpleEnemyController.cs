@@ -16,6 +16,8 @@ public class SimpleEnemyController : MonoBehaviour
 
     Vector3 m_randomWalkDestination;
 
+    Collider m_collider;
+
     public float m_moveSpeed;
 
     public float m_randomWalkRadius;
@@ -50,6 +52,12 @@ public class SimpleEnemyController : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        OnEnemyHit();
+        Destroy(this.gameObject);
+    }
+
     void SetRandomWalkDestinationXZ()
     {
         //float unitX = Random.Range(0, 1f);
@@ -66,5 +74,10 @@ public class SimpleEnemyController : MonoBehaviour
     {
         Vector3 pos = transform.position;
         return new Vector2(pos.x - m_randomWalkDestination.x, pos.z - m_randomWalkDestination.z).magnitude < 1f;
+    }
+
+    void OnEnemyHit()
+    {
+        EventManager.Broadcast(Events.EventEnemyDie);
     }
 }

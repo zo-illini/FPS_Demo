@@ -69,6 +69,12 @@ public class GameWorld : MonoBehaviour
     void InitializeScene()
     {
         Instantiate(m_simpleEnemyPrefab, new Vector3(10, 0, 10), Quaternion.identity);
+        EventManager.AddListener<Event_Enemy_Die>(CreateNewEnemy);
+    }
+
+    void CreateNewEnemy(Event_Enemy_Die evt)
+    {
+        Instantiate(m_simpleEnemyPrefab, new Vector3(10, 0, 10), Quaternion.identity);
     }
 }
 
