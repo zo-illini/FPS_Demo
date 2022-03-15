@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class GameWorld : MonoBehaviour
 {
@@ -15,11 +16,15 @@ public class GameWorld : MonoBehaviour
     public GameObject m_gameHUDPrefab;
     GameObject m_startMenu;
 
+    GameObject m_gameHUD;
+
     Canvas m_canvas;
 
     Button m_startButton;
 
     GameObject m_tempCamera;
+
+    int m_killCount;
 
     void Start()
     {
@@ -36,6 +41,8 @@ public class GameWorld : MonoBehaviour
         // Create a temporary camera
         m_tempCamera = new GameObject();
         m_tempCamera.AddComponent<Camera>();
+
+        m_killCount = 0;
 
     }
 
@@ -54,7 +61,7 @@ public class GameWorld : MonoBehaviour
         Destroy(m_tempCamera);
 
         // GameHUD
-        Instantiate(m_gameHUDPrefab);
+        m_gameHUD = Instantiate(m_gameHUDPrefab);
 
         // More Initialization
         InitializePlayer();
@@ -69,12 +76,45 @@ public class GameWorld : MonoBehaviour
     void InitializeScene()
     {
         Instantiate(m_simpleEnemyPrefab, new Vector3(10, 0, 10), Quaternion.identity);
-        EventManager.AddListener<Event_Enemy_Die>(CreateNewEnemy);
+        
+        // Deal with events
+        EventManager.AddListener<Event_Enemy_Die>(OnEnemyKilled);
+        EventManager.AddListener<Event_Win>(OnWin);
+
     }
 
-    void CreateNewEnemy(Event_Enemy_Die evt)
+    void OnEnemyKilled(Event_Enemy_Die evt)
     {
-        Instantiate(m_simpleEnemyPrefab, new Vector3(10, 0, 10), Quaternion.identity);
+        m_gameHUD.GetComponentInChildren<Text>().text = "Enemy Killed: " + (++m_killCount).ToString();
+        if (m_killCount == 1)
+        {
+            EventManager.Broadcast(Events.EventWin);
+        }
+        else
+        {
+            Instantiate(m_simpleEnemyPrefab, new Vector3(10, 0, 10), Quaternion.identity);
+        }
+
+    }
+
+    void OnWin(Event_Win evt)
+    {
+        m_gameHUD.GetComponentsInChildren<Text>()[1].color = Color.black;
+        Time.timeScale = 0;
+        StartCoroutine(WaitToEndGame());
+    }
+
+    IEnumerator WaitToEndGame()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        if (Application.isEditor)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+        else
+        {
+            Application.Quit();
+        }
     }
 }
 
