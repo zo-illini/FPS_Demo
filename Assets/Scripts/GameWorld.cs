@@ -86,7 +86,7 @@ public class GameWorld : MonoBehaviour
     void OnEnemyKilled(Event_Enemy_Die evt)
     {
         m_gameHUD.GetComponentInChildren<Text>().text = "Enemy Killed: " + (++m_killCount).ToString();
-        if (m_killCount == 1)
+        if (m_killCount == 3)
         {
             EventManager.Broadcast(Events.EventWin);
         }
