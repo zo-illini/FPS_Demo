@@ -166,7 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b59f2c972589554b85a88315e9f3e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_projectilePrefab: {fileID: 4966296341339041580, guid: cfa3bc05d3473a448968a79f8dc71c6b, type: 3}
+  m_primaryProjectilePrefab: {fileID: 4966296341339041580, guid: cfa3bc05d3473a448968a79f8dc71c6b, type: 3}
+  m_secondaryProjectilePrefab: {fileID: 4966296341339041580, guid: 30ee695dca7616d468ff2aaa7fb54ff4, type: 3}
   m_shootCooldown: 0.5
   m_ownedByPlayer: 1
 --- !u!1 &4917447182987289516

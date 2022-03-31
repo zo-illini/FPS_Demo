@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    float m_speed;
+    public float m_speed;
 
-    bool m_active = false;
+    protected bool m_active = false;
 
     public float m_lifeTime;
 
@@ -33,11 +33,6 @@ public class Projectile : MonoBehaviour
     public void Activate()
     {
         m_active = true;
-    }
-
-    public void SetSpeed(float speed)
-    {
-        m_speed = speed;
     }
 
     public void SetForward(Vector3 forward)

@@ -43,4 +43,9 @@ public class InputComponent : MonoBehaviour
     {
         return Input.GetMouseButton(0);
     }
+
+    public bool GetShootSecondary()
+    {
+        return Input.GetMouseButton(1);
+    }
 }

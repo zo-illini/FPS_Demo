@@ -17,9 +17,6 @@ public class BaseEnemyController : MonoBehaviour
     public Vector3 m_randomWalkCenter;
 
     protected GameObject m_player;
-
-    protected GameWorld m_world;
-
     protected NavMeshAgent m_agent;
 
     protected Vector3 m_randomWalkDestination;
@@ -33,8 +30,7 @@ public class BaseEnemyController : MonoBehaviour
         m_randomWalkDestination = transform.position;
         m_randomWalkCenter = transform.position;
 
-        m_world = FindObjectOfType<GameWorld>();
-        m_player = m_world.m_player;
+        m_player = FindObjectOfType<GameWorld>().m_player;
     }
 
     // Update is called once per frame
