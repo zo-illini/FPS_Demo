@@ -167,6 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_projectilePrefab: {fileID: 4966296341339041580, guid: cfa3bc05d3473a448968a79f8dc71c6b, type: 3}
+  m_shootCooldown: 0.5
+  m_ownedByPlayer: 1
 --- !u!1 &4917447182987289516
 GameObject:
   m_ObjectHideFlags: 0

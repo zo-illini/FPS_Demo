@@ -6,12 +6,13 @@ public class WeaponController : MonoBehaviour
 {
     public GameObject m_projectilePrefab;
 
-    float m_shootCooldown;
+    public float m_shootCooldown;
     float m_shootCooldownTimer;
+
+    public bool m_ownedByPlayer;
 
     void Start()
     {
-        m_shootCooldown = 0.5f;
         m_shootCooldownTimer = 0;
     }
 
@@ -29,7 +30,11 @@ public class WeaponController : MonoBehaviour
             Projectile projectile = obj.GetComponent<Projectile>();
             projectile.SetSpeed(50);
             projectile.SetForward(forward);
+            projectile.tag = m_ownedByPlayer ? "Player Projectile" : "Enemy Projectile";
+            projectile.m_lifeTime = 3.0f;
+
             projectile.Activate();
+
             m_shootCooldownTimer = 0;
         }
         

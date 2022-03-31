@@ -8,10 +8,11 @@ public class Projectile : MonoBehaviour
 
     bool m_active = false;
 
+    public float m_lifeTime;
+
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -20,6 +21,12 @@ public class Projectile : MonoBehaviour
         if (m_active)
         {
             transform.position += transform.forward * m_speed * Time.deltaTime;
+            m_lifeTime -= Time.deltaTime;
+        }
+
+        if (m_lifeTime < 0)
+        {
+            Destroy(this.gameObject);
         }
     }
 
