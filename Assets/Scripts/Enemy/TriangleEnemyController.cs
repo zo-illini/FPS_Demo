@@ -35,7 +35,7 @@ public class TriangleEnemyController : BaseEnemyController
         switch(m_state)
         {
             case TriangleEnemyState.Patrolling:
-                
+                Patrol();
             break;
             case TriangleEnemyState.Approaching:
                 m_agent.SetDestination(m_player.transform.position);

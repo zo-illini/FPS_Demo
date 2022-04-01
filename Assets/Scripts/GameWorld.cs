@@ -79,8 +79,10 @@ public class GameWorld : MonoBehaviour
 
     void InitializeScene()
     {
-        Instantiate(m_triangleEnemyPrefab, new Vector3(10, 0, 10), Quaternion.identity);
-        
+        Instantiate(m_triangleEnemyPrefab, new Vector3(-15, 2, -10), Quaternion.identity);
+        Instantiate(m_triangleEnemyPrefab, new Vector3(-10, 2, -20), Quaternion.identity);
+        Instantiate(m_circleEnemyPrefab, new Vector3(-33, 2, -26), Quaternion.identity);
+
         // Deal with events
         EventManager.AddListener<Event_Enemy_Die>(OnEnemyKilled);
         EventManager.AddListener<Event_Win>(OnWin);
@@ -90,13 +92,13 @@ public class GameWorld : MonoBehaviour
     void OnEnemyKilled(Event_Enemy_Die evt)
     {
         m_gameHUD.GetComponentInChildren<Text>().text = "Enemy Killed: " + (++m_killCount).ToString();
-        if (m_killCount == 5)
+        if (m_killCount == 3)
         {
             EventManager.Broadcast(Events.EventWin);
         }
         else
         {
-            Instantiate(m_triangleEnemyPrefab, new Vector3(10, 0, 10), Quaternion.identity);
+            //Instantiate(m_triangleEnemyPrefab, new Vector3(10, 0, 10), Quaternion.identity);
         }
 
     }
