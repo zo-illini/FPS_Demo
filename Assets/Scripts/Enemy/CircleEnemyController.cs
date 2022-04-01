@@ -13,16 +13,10 @@ public class CircleEnemyController : BaseEnemyController
     public float m_spacingDistance;
     public float m_spacingSpeed;
 
-    void Start()
+    new void Start()
     {
-        m_agent = GetComponent<NavMeshAgent>();
-        m_agent.speed = m_patrolSpeed;
-
+        base.Start();
         m_state = CircleEnemyState.Patrolling;
-        m_randomWalkDestination = transform.position;
-        m_randomWalkCenter = transform.position;
-
-        m_player = FindObjectOfType<GameWorld>().m_player;
     }
 
     // Update is called once per frame

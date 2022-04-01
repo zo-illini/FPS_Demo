@@ -15,16 +15,10 @@ public class TriangleEnemyController : BaseEnemyController
     TriangleEnemyState m_state;
 
 
-    void Start()
+    new void Start()
     {
-        m_agent = GetComponent<NavMeshAgent>();
-        m_agent.speed = m_patrolSpeed;
-
+        base.Start();
         m_state = TriangleEnemyState.Patrolling;
-        m_randomWalkDestination = transform.position;
-        m_randomWalkCenter = transform.position;
-
-        m_player = FindObjectOfType<GameWorld>().m_player;
     }
 
     // Update is called once per frame

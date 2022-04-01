@@ -74,7 +74,7 @@ public class GameWorld : MonoBehaviour
 
     void InitializePlayer()
     {
-        m_player = Instantiate(m_playerPrefab, Vector3.zero, Quaternion.identity);
+        m_player = Instantiate(m_playerPrefab, Vector3.zero, Quaternion.Euler(0, 210, 0));
     }
 
     void InitializeScene()

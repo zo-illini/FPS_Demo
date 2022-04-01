@@ -15,14 +15,15 @@ public class BaseEnemyController : MonoBehaviour
     public float m_attackRadius;
 
     public Vector3 m_randomWalkCenter;
-
     protected GameObject m_player;
     protected NavMeshAgent m_agent;
 
     protected Vector3 m_randomWalkDestination;
 
+    protected Health m_health;
+
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         m_agent = GetComponent<NavMeshAgent>();
         m_agent.speed = m_patrolSpeed;
@@ -31,6 +32,8 @@ public class BaseEnemyController : MonoBehaviour
         m_randomWalkCenter = transform.position;
 
         m_player = FindObjectOfType<GameWorld>().m_player;
+        m_health = GetComponent<Health>();
+        m_health.SetOnDeath(OnEnemyKilled);
     }
 
     // Update is called once per frame
@@ -51,8 +54,7 @@ public class BaseEnemyController : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player Projectile")
         {
-            OnEnemyHit();
-            Destroy(this.gameObject);
+            m_health.TakeDamage(50);
             Destroy(collider.gameObject);
         }
         
@@ -75,8 +77,9 @@ public class BaseEnemyController : MonoBehaviour
         return new Vector2(m_player.transform.position.x, m_player.transform.position.z) - new Vector2(transform.position.x, transform.position.z);
     }
 
-    protected void OnEnemyHit()
+    protected void OnEnemyKilled()
     {
         EventManager.Broadcast(Events.EventEnemyDie);
+        Destroy(this.gameObject);
     }
 }
