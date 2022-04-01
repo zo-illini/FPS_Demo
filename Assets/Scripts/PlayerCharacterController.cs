@@ -16,6 +16,8 @@ public class PlayerCharacterController : MonoBehaviour
 
     float m_curCameraAngleX;
 
+    Health m_health;
+
     // Start is called before the first frame update
     void Start()
     {   
@@ -27,6 +29,9 @@ public class PlayerCharacterController : MonoBehaviour
 
         m_cameraSpeedY = 360;
         m_curCameraAngleX = 0;
+
+        m_health = GetComponent<Health>();
+        m_health.SetOnDeath(OnPlayerDie);
     }
 
     // Update is called once per frame
@@ -52,5 +57,15 @@ public class PlayerCharacterController : MonoBehaviour
         {
             m_weapon.Shoot(m_camera.transform.forward, 1);
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        m_health.TakeDamage(damage);
+    }
+
+    void OnPlayerDie()
+    {
+        EventManager.Broadcast(Events.EventPlayerDie);
     }
 }

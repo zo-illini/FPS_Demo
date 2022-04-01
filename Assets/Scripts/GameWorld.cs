@@ -86,6 +86,7 @@ public class GameWorld : MonoBehaviour
         // Deal with events
         EventManager.AddListener<Event_Enemy_Die>(OnEnemyKilled);
         EventManager.AddListener<Event_Win>(OnWin);
+        EventManager.AddListener<Event_Player_Die>(OnPlyaerDie);
 
     }
 
@@ -106,6 +107,13 @@ public class GameWorld : MonoBehaviour
     void OnWin(Event_Win evt)
     {
         m_gameHUD.GetComponentsInChildren<Text>()[1].color = Color.black;
+        Time.timeScale = 0;
+        StartCoroutine(WaitToEndGame());
+    }
+
+    void OnPlyaerDie(Event_Player_Die evt)
+    {
+        m_gameHUD.GetComponentsInChildren<Text>()[2].color = Color.black;
         Time.timeScale = 0;
         StartCoroutine(WaitToEndGame());
     }

@@ -57,6 +57,10 @@ public class BaseEnemyController : MonoBehaviour
             m_health.TakeDamage(50);
             Destroy(collider.gameObject);
         }
+        else if (collider.gameObject.tag == "Player")
+        {
+            collider.gameObject.GetComponent<PlayerCharacterController>().TakeDamage(20);
+        }
         
     }
 
