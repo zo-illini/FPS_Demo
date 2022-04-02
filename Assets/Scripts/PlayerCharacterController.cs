@@ -68,4 +68,12 @@ public class PlayerCharacterController : MonoBehaviour
     {
         EventManager.Broadcast(Events.EventPlayerDie);
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 10)
+        {
+            TakeDamage(20);
+        }
+    }
 }

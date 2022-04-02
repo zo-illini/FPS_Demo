@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4440353511771178159}
   - component: {fileID: 2637011824157799472}
   - component: {fileID: 1178099902630461382}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,8 +107,8 @@ GameObject:
   - component: {fileID: 8525873024059435070}
   - component: {fileID: 6858710103309248163}
   - component: {fileID: 8519599449714778588}
-  m_Layer: 8
-  m_Name: ProjectilePrefab
+  m_Layer: 10
+  m_Name: EnemyProjectilePrefab
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134afcdeef863fb499514dc90ca2f448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 25
+  m_speed: 15
   m_lifeTime: 3
 --- !u!135 &6858710103309248163
 SphereCollider:
@@ -151,7 +151,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4966296341339041580}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2

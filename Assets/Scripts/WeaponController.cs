@@ -30,9 +30,11 @@ public class WeaponController : MonoBehaviour
         if (CanShoot())
         {
             GameObject obj = Instantiate(m_primaryProjectilePrefab, transform.position, Quaternion.identity);
+            obj.transform.forward = forward;
             Projectile projectile = obj.GetComponent<Projectile>();
-            projectile.SetForward(forward);
             projectile.tag = m_ownedByPlayer ? "Player Projectile" : "Enemy Projectile";
+            projectile.gameObject.layer = m_ownedByPlayer ? 8 : 10;
+
             projectile.Activate();
 
             m_shootCooldownTimer = 0;
@@ -41,22 +43,22 @@ public class WeaponController : MonoBehaviour
 
     public void Shoot(Vector3 forward, int weaponType)
     {
-        if (weaponType == 0)
+        if (CanShoot())
         {
-            Shoot(forward);
-        }
-        else
-        {
-            if (CanShoot())
+            GameObject projectile;
+            if (weaponType == 0)
             {
-                GameObject obj = Instantiate(m_secondaryProjectilePrefab, transform.position, Quaternion.identity);
-                Projectile projectile = obj.GetComponent<Projectile>();
-                projectile.SetForward(forward);
-                projectile.tag = m_ownedByPlayer ? "Player Projectile" : "Enemy Projectile";
-                projectile.Activate();
-
-                m_shootCooldownTimer = 0;
+                projectile = Instantiate(m_primaryProjectilePrefab, transform.position, Quaternion.identity);
             }
+            else
+            {
+                projectile = Instantiate(m_secondaryProjectilePrefab, transform.position, Quaternion.identity);
+            }
+            projectile.tag = m_ownedByPlayer ? "Player Projectile" : "Enemy Projectile";
+            projectile.transform.forward = forward;
+            projectile.layer = m_ownedByPlayer ? 8 : 10;
+
+            projectile.GetComponent<Projectile>().Activate();
         }
     }
 

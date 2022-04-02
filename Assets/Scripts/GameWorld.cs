@@ -28,6 +28,8 @@ public class GameWorld : MonoBehaviour
 
     GameObject m_tempCamera;
 
+    int m_totalEnemyCount;
+
     int m_killCount;
 
     void Start()
@@ -81,7 +83,20 @@ public class GameWorld : MonoBehaviour
     {
         Instantiate(m_triangleEnemyPrefab, new Vector3(-15, 2, -10), Quaternion.identity);
         Instantiate(m_triangleEnemyPrefab, new Vector3(-10, 2, -20), Quaternion.identity);
+
         Instantiate(m_circleEnemyPrefab, new Vector3(-33, 2, -26), Quaternion.identity);
+        Instantiate(m_circleEnemyPrefab, new Vector3(-43, 2, -26), Quaternion.identity);
+        Instantiate(m_circleEnemyPrefab, new Vector3(-53, 2, -26), Quaternion.identity);
+
+        Instantiate(m_triangleEnemyPrefab, new Vector3(-55, 2, -55), Quaternion.identity);
+        Instantiate(m_triangleEnemyPrefab, new Vector3(-40, 2, -55), Quaternion.identity);
+
+        Instantiate(m_circleEnemyPrefab, new Vector3(-45, 2, -60), Quaternion.identity);
+        Instantiate(m_circleEnemyPrefab, new Vector3(-45, 2, -65), Quaternion.identity);
+        Instantiate(m_circleEnemyPrefab, new Vector3(-40, 2, -60), Quaternion.identity);
+
+        m_totalEnemyCount = 10;
+
 
         // Deal with events
         EventManager.AddListener<Event_Enemy_Die>(OnEnemyKilled);
@@ -93,7 +108,7 @@ public class GameWorld : MonoBehaviour
     void OnEnemyKilled(Event_Enemy_Die evt)
     {
         m_gameHUD.GetComponentInChildren<Text>().text = "Enemy Killed: " + (++m_killCount).ToString();
-        if (m_killCount == 3)
+        if (m_killCount == m_totalEnemyCount)
         {
             EventManager.Broadcast(Events.EventWin);
         }
