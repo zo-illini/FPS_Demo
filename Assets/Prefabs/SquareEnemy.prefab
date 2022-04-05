@@ -169,9 +169,11 @@ MonoBehaviour:
   m_alertRadius: 15
   m_attackRadius: 0
   m_randomWalkCenter: {x: 0, y: 0, z: 0}
+  m_isProtected: 0
   m_dodgeSpeed: 50
   m_dodgeDistance: 3
   m_alertTurnVelocity: 360
+  m_protectRadius: 30
 --- !u!1001 &6101245572620187390
 PrefabInstance:
   m_ObjectHideFlags: 0

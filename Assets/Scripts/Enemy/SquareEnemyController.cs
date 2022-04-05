@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections.Generic;
 
 enum SquareEnemyState{Idle, Alert, Dodging};
 
@@ -9,11 +10,15 @@ public class SquareEnemyController : BaseEnemyController
 
     SquareEnemyState m_state;
 
+    GameWorld m_world;
+
     public float m_dodgeSpeed;
 
     public float m_dodgeDistance;
 
     public float m_alertTurnVelocity;
+
+    public float m_protectRadius;
 
 
     new void Start()
@@ -21,7 +26,11 @@ public class SquareEnemyController : BaseEnemyController
         base.Start();
         m_state = SquareEnemyState.Idle;
 
+        m_world = FindObjectOfType<GameWorld>();
+
         EventManager.AddListener<Event_Player_Fire_Projectile>(OnPlayerProjectileFire);
+        m_health.SetOnDeath(OnEnemyKilled);
+
     }
 
     // Update is called once per frame
@@ -38,15 +47,59 @@ public class SquareEnemyController : BaseEnemyController
         }
 
         UpdateState();
+
+        foreach (GameObject enemy in m_world.m_enemyList)
+        {
+            if (enemy != this.gameObject && enemy != null)
+            {
+                if (Vector3.Distance(enemy.transform.position, transform.position) <= m_protectRadius)
+                {
+                    enemy.GetComponent<SquareEnemyController>().m_isProtected = true;
+                }
+                else
+                {
+                    enemy.GetComponent<SquareEnemyController>().m_isProtected = false;
+                }
+            }
+            
+        }
     }
 
     new void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Player Projectile")
         {
-            m_health.TakeDamage(50);
+            if (m_isProtected)
+            {
+                m_health.TakeDamage(25);
+            }
+            else
+            {
+                m_health.TakeDamage(50);
+            }
             Destroy(collider.gameObject);
         }
+    }
+
+    new void OnEnemyKilled()
+    {
+        foreach (GameObject enemy in m_world.m_enemyList)
+        {
+            if (enemy != this.gameObject && enemy != null)
+            {
+                if (Vector3.Distance(enemy.transform.position, transform.position) <= m_protectRadius)
+                {
+                    Debug.Log("Hi");
+                    enemy.GetComponent<SquareEnemyController>().m_isProtected = false;
+                }
+            }
+            
+        }
+        
+        Event_Enemy_Die evt = new Event_Enemy_Die();
+        evt.m_enemy = this.gameObject;
+        EventManager.Broadcast(evt);
+        Destroy(this.gameObject);
     }
 
     void UpdateState()

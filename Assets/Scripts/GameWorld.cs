@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameWorld : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class GameWorld : MonoBehaviour
     int m_totalEnemyCount;
 
     int m_killCount;
+    public List<GameObject> m_enemyList {get; private set;}
 
     void Start()
     {
@@ -99,7 +101,9 @@ public class GameWorld : MonoBehaviour
         Instantiate(m_circleEnemyPrefab, new Vector3(-40, 2, -60), Quaternion.identity);
         */
 
-        Instantiate(m_squareEnemyPrefab, new Vector3(-15, 2, -10), Quaternion.identity);
+        m_enemyList = new List<GameObject>();
+        m_enemyList.Add(Instantiate(m_squareEnemyPrefab, new Vector3(-15, 2, -10), Quaternion.identity));
+        m_enemyList.Add(Instantiate(m_squareEnemyPrefab, new Vector3(-20, 2, -10), Quaternion.identity));
 
         m_totalEnemyCount = 10;
 
@@ -118,9 +122,14 @@ public class GameWorld : MonoBehaviour
         {
             EventManager.Broadcast(Events.EventWin);
         }
-        else
+        
+        for (int i = 0; i < m_enemyList.Count; i ++)
         {
-            //Instantiate(m_triangleEnemyPrefab, new Vector3(10, 0, 10), Quaternion.identity);
+            if (m_enemyList[i] == evt.m_enemy)
+            {
+                m_enemyList[i] = null;
+                break;
+            }
         }
 
     }

@@ -22,6 +22,8 @@ public class BaseEnemyController : MonoBehaviour
 
     protected Health m_health;
 
+    public bool m_isProtected;
+
     // Start is called before the first frame update
     protected void Start()
     {
@@ -54,7 +56,14 @@ public class BaseEnemyController : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player Projectile")
         {
-            m_health.TakeDamage(50);
+            if (m_isProtected)
+            {
+                m_health.TakeDamage(25);
+            }
+            else
+            {
+                m_health.TakeDamage(50);
+            }
             Destroy(collider.gameObject);
         }
     }
@@ -78,7 +87,9 @@ public class BaseEnemyController : MonoBehaviour
 
     protected void OnEnemyKilled()
     {
-        EventManager.Broadcast(Events.EventEnemyDie);
+        Event_Enemy_Die evt = new Event_Enemy_Die();
+        evt.m_enemy = this.gameObject;
+        EventManager.Broadcast(evt);
         Destroy(this.gameObject);
     }
 }

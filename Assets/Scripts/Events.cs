@@ -15,7 +15,10 @@ public static class Events
 
 };
 
-public class Event_Enemy_Die : GameEvent {};
+public class Event_Enemy_Die : GameEvent 
+{
+    public GameObject m_enemy;
+};
 
 public class Event_Win : GameEvent {};
 
