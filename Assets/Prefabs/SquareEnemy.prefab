@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 3351732573180040216}
   - component: {fileID: 3351732573180040199}
   - component: {fileID: 3351732573180040197}
-  - component: {fileID: 1288673435044244003}
   - component: {fileID: 796312651783114672}
   - component: {fileID: 255156377394888101}
+  - component: {fileID: 6881611435350688654}
   m_Layer: 9
-  m_Name: 'CircleEnemy '
+  m_Name: SquareEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3351732573180040196}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &3351732573180040216
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 15
+  m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 360
   m_StoppingDistance: 0
@@ -122,25 +122,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1288673435044244003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3351732573180040196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 582b7842ab9d2cb44adeeebdc11014a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_patrolSpeed: 2
-  m_randomWalkRadius: 5
-  m_alertRadius: 15
-  m_attackRadius: 10
-  m_randomWalkCenter: {x: 0, y: 0, z: 0}
-  m_spacingDistance: 7
-  m_spacingSpeed: 5
 --- !u!114 &796312651783114672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +152,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 125
   m_hasUI: 1
+--- !u!114 &6881611435350688654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351732573180040196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ccae944e8cf05f44b5d5ece19a13d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_patrolSpeed: 0
+  m_randomWalkRadius: 0
+  m_alertRadius: 15
+  m_attackRadius: 0
+  m_randomWalkCenter: {x: 0, y: 0, z: 0}
+  m_dodgeSpeed: 50
+  m_dodgeDistance: 3
+  m_alertTurnVelocity: 360
 --- !u!1001 &6101245572620187390
 PrefabInstance:
   m_ObjectHideFlags: 0

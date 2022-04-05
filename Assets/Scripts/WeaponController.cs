@@ -25,6 +25,7 @@ public class WeaponController : MonoBehaviour
             m_shootCooldownTimer += Time.deltaTime;
     }
 
+/*
     public void Shoot(Vector3 forward)
     {
         if (CanShoot())
@@ -34,13 +35,13 @@ public class WeaponController : MonoBehaviour
             Projectile projectile = obj.GetComponent<Projectile>();
             projectile.tag = m_ownedByPlayer ? "Player Projectile" : "Enemy Projectile";
             projectile.gameObject.layer = m_ownedByPlayer ? 8 : 10;
-
+            
             projectile.Activate();
 
             m_shootCooldownTimer = 0;
         }
     }
-
+*/
     public void Shoot(Vector3 forward, int weaponType)
     {
         if (CanShoot())
@@ -58,7 +59,19 @@ public class WeaponController : MonoBehaviour
             projectile.transform.forward = forward;
             projectile.layer = m_ownedByPlayer ? 8 : 10;
 
+            if (m_ownedByPlayer)
+            {
+                Event_Player_Fire_Projectile evt = new Event_Player_Fire_Projectile();
+                evt.m_transform = projectile.transform;
+                evt.m_radius = 0.25f;
+                evt.m_isSphere = weaponType == 0 ? true : false;
+                EventManager.Broadcast(evt);
+            }
+
             projectile.GetComponent<Projectile>().Activate();
+
+            m_shootCooldownTimer = 0;
+
         }
     }
 

@@ -10,6 +10,9 @@ public static class Events
 
     public static Event_Player_Die EventPlayerDie= new Event_Player_Die();
 
+    public static Event_Player_Fire_Projectile EventPlayerFireProjectile= new Event_Player_Fire_Projectile();
+
+
 };
 
 public class Event_Enemy_Die : GameEvent {};
@@ -17,3 +20,12 @@ public class Event_Enemy_Die : GameEvent {};
 public class Event_Win : GameEvent {};
 
 public class Event_Player_Die : GameEvent {};
+
+public class Event_Player_Fire_Projectile : GameEvent 
+{
+    public Transform m_transform;
+
+    public float m_radius;
+    
+    public bool m_isSphere;
+};

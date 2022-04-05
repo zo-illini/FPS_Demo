@@ -39,7 +39,7 @@ public class CircleEnemyController : BaseEnemyController
                 transform.LookAt(m_player.transform);
 
                 // Shoot at Player
-                GetComponent<WeaponController>().Shoot(m_player.transform.position - transform.position);
+                GetComponent<WeaponController>().Shoot(m_player.transform.position - transform.position, 0);
             break;
         }
 

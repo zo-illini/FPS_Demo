@@ -13,6 +13,8 @@ public class GameWorld : MonoBehaviour
 
     public GameObject m_circleEnemyPrefab;
 
+    public GameObject m_squareEnemyPrefab;
+
     public GameObject m_player{ get; private set; }
 
     public GameObject m_startMenuPrefab;
@@ -81,6 +83,7 @@ public class GameWorld : MonoBehaviour
 
     void InitializeScene()
     {
+        /*
         Instantiate(m_triangleEnemyPrefab, new Vector3(-15, 2, -10), Quaternion.identity);
         Instantiate(m_triangleEnemyPrefab, new Vector3(-10, 2, -20), Quaternion.identity);
 
@@ -94,6 +97,9 @@ public class GameWorld : MonoBehaviour
         Instantiate(m_circleEnemyPrefab, new Vector3(-45, 2, -60), Quaternion.identity);
         Instantiate(m_circleEnemyPrefab, new Vector3(-45, 2, -65), Quaternion.identity);
         Instantiate(m_circleEnemyPrefab, new Vector3(-40, 2, -60), Quaternion.identity);
+        */
+
+        Instantiate(m_squareEnemyPrefab, new Vector3(-15, 2, -10), Quaternion.identity);
 
         m_totalEnemyCount = 10;
 

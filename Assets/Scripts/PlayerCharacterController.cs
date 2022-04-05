@@ -50,7 +50,7 @@ public class PlayerCharacterController : MonoBehaviour
 
         if (m_input.GetShoot())
         {
-            m_weapon.Shoot(m_camera.transform.forward);
+            m_weapon.Shoot(m_camera.transform.forward, 0);
         }
 
         if (m_input.GetShootSecondary())
