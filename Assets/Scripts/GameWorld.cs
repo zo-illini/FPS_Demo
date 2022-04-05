@@ -85,27 +85,33 @@ public class GameWorld : MonoBehaviour
 
     void InitializeScene()
     {
-        /*
-        Instantiate(m_triangleEnemyPrefab, new Vector3(-15, 2, -10), Quaternion.identity);
-        Instantiate(m_triangleEnemyPrefab, new Vector3(-10, 2, -20), Quaternion.identity);
-
-        Instantiate(m_circleEnemyPrefab, new Vector3(-33, 2, -26), Quaternion.identity);
-        Instantiate(m_circleEnemyPrefab, new Vector3(-43, 2, -26), Quaternion.identity);
-        Instantiate(m_circleEnemyPrefab, new Vector3(-53, 2, -26), Quaternion.identity);
-
-        Instantiate(m_triangleEnemyPrefab, new Vector3(-55, 2, -55), Quaternion.identity);
-        Instantiate(m_triangleEnemyPrefab, new Vector3(-40, 2, -55), Quaternion.identity);
-
-        Instantiate(m_circleEnemyPrefab, new Vector3(-45, 2, -60), Quaternion.identity);
-        Instantiate(m_circleEnemyPrefab, new Vector3(-45, 2, -65), Quaternion.identity);
-        Instantiate(m_circleEnemyPrefab, new Vector3(-40, 2, -60), Quaternion.identity);
-        */
-
         m_enemyList = new List<GameObject>();
-        m_enemyList.Add(Instantiate(m_squareEnemyPrefab, new Vector3(-15, 2, -10), Quaternion.identity));
-        m_enemyList.Add(Instantiate(m_squareEnemyPrefab, new Vector3(-20, 2, -10), Quaternion.identity));
 
-        m_totalEnemyCount = 10;
+        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-15, 2, -10), Quaternion.identity));
+        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-20, 2, -10), Quaternion.identity));
+
+        m_enemyList.Add(Instantiate(m_circleEnemyPrefab, new Vector3(-35, 2, -20), Quaternion.identity));
+        m_enemyList.Add(Instantiate(m_circleEnemyPrefab, new Vector3(-50, 2, -20), Quaternion.identity));
+
+        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-60, 2, -40), Quaternion.identity));
+
+        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-50, 2, -40), Quaternion.identity));
+        m_enemyList.Add(Instantiate(m_circleEnemyPrefab, new Vector3(-40, 2, -40), Quaternion.identity));
+
+        m_enemyList.Add(Instantiate(m_squareEnemyPrefab, new Vector3(-10, 2, -50), Quaternion.identity));
+
+        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-10, 2, -40), Quaternion.identity));
+        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-10, 2, -60), Quaternion.identity));
+
+        m_enemyList.Add(Instantiate(m_squareEnemyPrefab, new Vector3(-35, 2, -68), Quaternion.identity));
+
+        m_enemyList.Add(Instantiate(m_circleEnemyPrefab, new Vector3(-40, 2, -63), Quaternion.identity));
+        m_enemyList.Add(Instantiate(m_circleEnemyPrefab, new Vector3(-40, 2, -57), Quaternion.identity));
+
+        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-35, 2, -63), Quaternion.identity));
+        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-35, 2, -57), Quaternion.identity));
+
+        m_totalEnemyCount = 15;
 
 
         // Deal with events

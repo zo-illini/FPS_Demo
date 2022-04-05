@@ -138,6 +138,7 @@ MonoBehaviour:
   m_alertRadius: 15
   m_attackRadius: 7
   m_randomWalkCenter: {x: 0, y: 0, z: 0}
+  m_isProtected: 0
   m_approachSpeed: 3
   m_dashSpeed: 10
   m_dashOverDistance: 1

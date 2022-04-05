@@ -64,6 +64,18 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void SetProtected(bool isProtected)
+    {
+        if (isProtected)
+        {
+            m_healthBarUI.GetComponentsInChildren<Image>()[1].color = Color.blue;
+        }
+        else
+        {
+            m_healthBarUI.GetComponentsInChildren<Image>()[1].color = Color.red;
+        }
+    }
+
 
 
 }

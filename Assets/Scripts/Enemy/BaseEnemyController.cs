@@ -24,6 +24,8 @@ public class BaseEnemyController : MonoBehaviour
 
     public bool m_isProtected;
 
+    int m_protectorNum = 0;
+
     // Start is called before the first frame update
     protected void Start()
     {
@@ -91,5 +93,12 @@ public class BaseEnemyController : MonoBehaviour
         evt.m_enemy = this.gameObject;
         EventManager.Broadcast(evt);
         Destroy(this.gameObject);
+    }
+
+    public void SetProtected(bool isProtected)
+    {
+        m_protectorNum = isProtected ? m_protectorNum + 1 : m_protectorNum - 1;
+        m_isProtected = m_protectorNum != 0;
+        m_health.SetProtected(m_isProtected);
     }
 }

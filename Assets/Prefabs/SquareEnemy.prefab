@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e77f151cde00d45af31501f370c21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxHealth: 125
+  m_maxHealth: 50
   m_hasUI: 1
 --- !u!114 &6881611435350688654
 MonoBehaviour:
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_attackRadius: 0
   m_randomWalkCenter: {x: 0, y: 0, z: 0}
   m_isProtected: 0
-  m_dodgeSpeed: 50
+  m_dodgeSpeed: 20
   m_dodgeDistance: 3
   m_alertTurnVelocity: 360
   m_protectRadius: 30

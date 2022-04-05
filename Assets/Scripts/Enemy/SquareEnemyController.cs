@@ -20,6 +20,8 @@ public class SquareEnemyController : BaseEnemyController
 
     public float m_protectRadius;
 
+    List<GameObject> m_protectingEnemies;
+
 
     new void Start()
     {
@@ -30,6 +32,8 @@ public class SquareEnemyController : BaseEnemyController
 
         EventManager.AddListener<Event_Player_Fire_Projectile>(OnPlayerProjectileFire);
         m_health.SetOnDeath(OnEnemyKilled);
+
+        m_protectingEnemies = new List<GameObject>();
 
     }
 
@@ -47,59 +51,27 @@ public class SquareEnemyController : BaseEnemyController
         }
 
         UpdateState();
-
-        foreach (GameObject enemy in m_world.m_enemyList)
-        {
-            if (enemy != this.gameObject && enemy != null)
-            {
-                if (Vector3.Distance(enemy.transform.position, transform.position) <= m_protectRadius)
-                {
-                    enemy.GetComponent<SquareEnemyController>().m_isProtected = true;
-                }
-                else
-                {
-                    enemy.GetComponent<SquareEnemyController>().m_isProtected = false;
-                }
-            }
-            
-        }
-    }
-
-    new void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.tag == "Player Projectile")
-        {
-            if (m_isProtected)
-            {
-                m_health.TakeDamage(25);
-            }
-            else
-            {
-                m_health.TakeDamage(50);
-            }
-            Destroy(collider.gameObject);
-        }
+        UpdateProtection();
     }
 
     new void OnEnemyKilled()
     {
+        // Clear the "protected" state of nearby enemies
         foreach (GameObject enemy in m_world.m_enemyList)
         {
             if (enemy != this.gameObject && enemy != null)
             {
                 if (Vector3.Distance(enemy.transform.position, transform.position) <= m_protectRadius)
                 {
-                    Debug.Log("Hi");
-                    enemy.GetComponent<SquareEnemyController>().m_isProtected = false;
+                    enemy.GetComponent<BaseEnemyController>().SetProtected(false);
                 }
             }
             
         }
         
-        Event_Enemy_Die evt = new Event_Enemy_Die();
-        evt.m_enemy = this.gameObject;
-        EventManager.Broadcast(evt);
-        Destroy(this.gameObject);
+        EventManager.RemoveListener<Event_Player_Fire_Projectile>(OnPlayerProjectileFire);
+
+        base.OnEnemyKilled();
     }
 
     void UpdateState()
@@ -130,13 +102,14 @@ public class SquareEnemyController : BaseEnemyController
 
     void ChangeState(SquareEnemyState newState)
     {
-        Debug.Log(gameObject.name +  " SM: " + m_state + " to " + newState);
+        //Debug.Log(gameObject.name +  " SM: " + m_state + " to " + newState);
         m_state = newState;
     }
 
+    // Dodge player projectile
     void OnPlayerProjectileFire(Event_Player_Fire_Projectile evt)
     {
-        if (m_state == SquareEnemyState.Alert && evt.m_isSphere)
+        if (m_state == SquareEnemyState.Alert)
         {
             RaycastHit hit;
             Physics.SphereCast(evt.m_transform.position, evt.m_radius, evt.m_transform.forward, out hit, m_alertRadius);
@@ -146,6 +119,38 @@ public class SquareEnemyController : BaseEnemyController
                 m_agent.speed = m_dodgeSpeed;
                 Vector3 dir = Random.Range(0, 2) == 0 ? transform.right : -1 * transform.right;
                 m_agent.SetDestination(transform.position + dir * m_dodgeDistance);
+            }
+        }
+    }
+
+    void UpdateProtection()
+    {
+        // try to add all protecting enemies
+        foreach (GameObject enemy in m_world.m_enemyList)
+        {
+            if (enemy && enemy != this.gameObject)
+            {
+                if (Vector3.Distance(enemy.transform.position, transform.position) <= m_protectRadius && !m_protectingEnemies.Contains(enemy))
+                {
+                    enemy.GetComponent<BaseEnemyController>().SetProtected(true);
+                    m_protectingEnemies.Add(enemy);
+                }
+            }
+        }
+
+        // remove protecting enemies that are far
+        for (int i = 0; i < m_protectingEnemies.Count; i ++)
+        {
+            GameObject e = m_protectingEnemies[i];
+            if (!e)
+            {
+                m_protectingEnemies.Remove(e);
+
+            }
+            else if (Vector3.Distance(e.transform.position, transform.position) > m_protectRadius)
+            {
+                m_protectingEnemies.Remove(e);
+                e.GetComponent<BaseEnemyController>().SetProtected(false);
             }
         }
     }

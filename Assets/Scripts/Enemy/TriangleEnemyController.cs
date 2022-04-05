@@ -44,12 +44,10 @@ public class TriangleEnemyController : BaseEnemyController
 
     new void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Player Projectile")
-        {
-            m_health.TakeDamage(50);
-            Destroy(collider.gameObject);
-        }
-        else if (collider.gameObject.tag == "Player")
+        base.OnTriggerEnter(collider);
+
+        // Damage player if touched
+        if (collider.gameObject.tag == "Player")
         {
             collider.gameObject.GetComponent<PlayerCharacterController>().TakeDamage(10f);
         }
