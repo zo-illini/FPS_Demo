@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3351732573180040217}
   - component: {fileID: 3351732573180040216}
   - component: {fileID: 3351732573180040199}
-  - component: {fileID: 3351732573180040198}
   - component: {fileID: 3351732573180040197}
+  - component: {fileID: 7751255455312200176}
   m_Layer: 9
   m_Name: SimpleEnemy
   m_TagString: Untagged
@@ -97,21 +97,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3351732573180040198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3351732573180040196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c949f0b4b15d08a49b3c25096e9545de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_moveSpeed: 0
-  m_randomWalkRadius: 10
-  m_randomWalkCenter: {x: 0, y: 0, z: 0}
 --- !u!195 &3351732573180040197
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -134,3 +119,18 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7751255455312200176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351732573180040196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460f346b541c09c4c94a07c899a9d6e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_patrolRadius: 5
+  m_alertRadius: 3
+  m_attackRadius: 1

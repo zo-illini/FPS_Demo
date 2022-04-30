@@ -85,6 +85,8 @@ public class GameWorld : MonoBehaviour
 
     void InitializeScene()
     {
+        Instantiate(m_simpleEnemyPrefab, new Vector3(-10, 2, 8), Quaternion.identity);
+
         m_enemyList = new List<GameObject>();
 
         m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-15, 2, -10), Quaternion.identity));
