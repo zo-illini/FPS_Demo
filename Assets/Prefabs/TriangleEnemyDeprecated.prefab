@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 3351732573180040216}
   - component: {fileID: 3351732573180040199}
   - component: {fileID: 3351732573180040197}
+  - component: {fileID: 8234570442508581456}
   - component: {fileID: 8075776724062536663}
-  - component: {fileID: 6628957924985490961}
   m_Layer: 9
-  m_Name: TriangleEnemy 1
+  m_Name: TriangleEnemyDeprecated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,6 +121,27 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8234570442508581456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351732573180040196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9188b3aa44c9b994fb8934ccac6e4151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_patrolSpeed: 1
+  m_randomWalkRadius: 10
+  m_alertRadius: 15
+  m_attackRadius: 7
+  m_randomWalkCenter: {x: 0, y: 0, z: 0}
+  m_isProtected: 0
+  m_approachSpeed: 3
+  m_dashSpeed: 10
+  m_dashOverDistance: 1
 --- !u!114 &8075776724062536663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,22 +156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 100
   m_hasUI: 1
---- !u!114 &6628957924985490961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3351732573180040196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1026efe22e2b2e549ad0418d396cf2a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_patrolRadius: 10
-  m_alertRadius: 15
-  m_attackRadius: 7
-  m_attackDashSpeed: 10
 --- !u!1001 &7748190169429063752
 PrefabInstance:
   m_ObjectHideFlags: 0

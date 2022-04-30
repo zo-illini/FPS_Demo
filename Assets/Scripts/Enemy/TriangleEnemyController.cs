@@ -14,7 +14,7 @@ public class TriangleEnemyController : BaseEnemyController
 
     TriangleEnemyState m_state;
 
-
+/*
     new void Start()
     {
         base.Start();
@@ -41,6 +41,7 @@ public class TriangleEnemyController : BaseEnemyController
 
         UpdateState();
     }
+*/
 
     new void OnTriggerEnter(Collider collider)
     {

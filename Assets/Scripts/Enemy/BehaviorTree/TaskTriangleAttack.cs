@@ -13,6 +13,8 @@ public class TaskTriangleAttack : Node
 
     float m_dashSpeed;
 
+    float m_dashOverDistance;
+
     NavMeshAgent m_agent;
     bool m_isDashing;
 
@@ -24,6 +26,7 @@ public class TaskTriangleAttack : Node
         m_self = (GameObject)m_tree.GetData("self");
         m_player = (GameObject)m_tree.GetData("player");
         m_dashSpeed = (float)m_tree.GetData("dash attack speed");
+        m_dashOverDistance = (float)m_tree.GetData("dash attack over distance");
 
         m_agent = m_self.GetComponent<NavMeshAgent>();
         m_isDashing = false;
@@ -36,7 +39,7 @@ public class TaskTriangleAttack : Node
         if (!m_isDashing)
         {
             Vector3 playerLookAt = m_player.transform.position - m_self.transform.position;
-            Vector3 dashDestination = m_player.transform.position + new Vector3(playerLookAt.x, 0, playerLookAt.y).normalized;
+            Vector3 dashDestination = m_player.transform.position + new Vector3(playerLookAt.x, 0, playerLookAt.y).normalized * m_dashOverDistance;
             m_agent.SetDestination(dashDestination);
             m_agent.speed = m_dashSpeed;
             m_isDashing = true;
