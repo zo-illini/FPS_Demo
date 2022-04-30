@@ -13,6 +13,7 @@ public class CircleEnemyController : BaseEnemyController
     public float m_spacingDistance;
     public float m_spacingSpeed;
 
+/*
     new void Start()
     {
         base.Start();
@@ -45,7 +46,7 @@ public class CircleEnemyController : BaseEnemyController
 
         UpdateState();
     }
-
+*/
     void UpdateState()
     { 
         float playerDistanceXZ = GetPlayerVectorXZ().magnitude;

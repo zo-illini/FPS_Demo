@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1288673435044244003}
   - component: {fileID: 796312651783114672}
   - component: {fileID: 255156377394888101}
+  - component: {fileID: 7667550098324076049}
   m_Layer: 9
   m_Name: 'CircleEnemy '
   m_TagString: Untagged
@@ -139,6 +140,7 @@ MonoBehaviour:
   m_alertRadius: 15
   m_attackRadius: 10
   m_randomWalkCenter: {x: 0, y: 0, z: 0}
+  m_isProtected: 0
   m_spacingDistance: 7
   m_spacingSpeed: 5
 --- !u!114 &796312651783114672
@@ -171,6 +173,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 125
   m_hasUI: 1
+--- !u!114 &7667550098324076049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351732573180040196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae98c714ef3208744ad79d45cfad85a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_patrolRadius: 5
+  m_patrolSpeed: 2
+  m_alertRadius: 15
+  m_attackRadius: 10
+  m_spacingDistance: 7
+  m_spacingSpeed: 5
 --- !u!1001 &6101245572620187390
 PrefabInstance:
   m_ObjectHideFlags: 0

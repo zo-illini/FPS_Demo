@@ -54,6 +54,7 @@ public class TriangleEnemyController : BaseEnemyController
         }
     }
 
+/*
     void UpdateState()
     { 
         float playerDistanceXZ = GetPlayerVectorXZ().magnitude;
@@ -95,5 +96,7 @@ public class TriangleEnemyController : BaseEnemyController
         //Debug.Log(gameObject.name +  " SM: " + m_state + " to " + newState);
         m_state = newState;
     }
+
+*/
 
 }
