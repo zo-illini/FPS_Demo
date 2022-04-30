@@ -4,12 +4,13 @@ using UnityEngine;
 
 using BehaviorTree;
 
-public class SimpleEnemyBT : BehaviorTree.Tree
+public class TriangleEnemyBT : BehaviorTree.Tree
 {
 
     public float m_patrolRadius;
     public float m_alertRadius;
     public float m_attackRadius;
+    public float m_attackDashSpeed;
 
     protected override Node InitializeTree()
     {
@@ -20,10 +21,16 @@ public class SimpleEnemyBT : BehaviorTree.Tree
         SetData("patrol center", this.transform.position);
         SetData("patrol radius", m_patrolRadius);
         SetData("alert radius", m_alertRadius);
-        SetData("attack raddius", m_attackRadius);
+        SetData("attack radius", m_attackRadius);
+        SetData("dash attack speed", m_attackDashSpeed);
 
         Node root = new Selector(this, new List<Node>
         {
+            new Sequence(this, new List<Node>
+            {
+                new CheckPlayerInAttackRange(this),
+                new TaskTriangleAttack(this),
+            }),
             new Sequence(this, new List<Node>
             {
                 new CheckPlayerInFOV(this),

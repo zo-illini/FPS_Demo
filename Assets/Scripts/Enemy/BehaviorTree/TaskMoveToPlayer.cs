@@ -19,7 +19,7 @@ public class TaskMoveToPlayer : Node
     {
         m_player = (GameObject)m_tree.GetData("player");
         m_self = (GameObject)m_tree.GetData("self");
-        m_desiredDistance = (float)m_tree.GetData("attack distance");
+        m_desiredDistance = (float)m_tree.GetData("attack radius");
     }
 
     public override NodeState Evaluate()
