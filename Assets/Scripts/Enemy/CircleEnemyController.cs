@@ -13,40 +13,6 @@ public class CircleEnemyController : BaseEnemyController
     public float m_spacingDistance;
     public float m_spacingSpeed;
 
-/*
-    new void Start()
-    {
-        base.Start();
-        m_state = CircleEnemyState.Patrolling;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Vector2 playerVectorXZ = new Vector2(m_player.transform.position.x - transform.position.x, m_player.transform.position.z - transform.position.z);
-        float playerDistanceXZ = playerVectorXZ.magnitude;
-
-        switch(m_state)
-        {
-            case CircleEnemyState.Patrolling:
-                Patrol();
-            break;
-            case CircleEnemyState.Spcaing:
-                if (playerDistanceXZ < m_spacingDistance)
-                {
-                    Vector3 delta = -1 * (m_spacingDistance - playerDistanceXZ) * new Vector3(playerVectorXZ.x, 0, playerVectorXZ.y);
-                    m_agent.SetDestination(transform.position + delta);
-                }
-                transform.LookAt(m_player.transform);
-
-                // Shoot at Player
-                GetComponent<WeaponController>().Shoot(m_player.transform.position - transform.position, 0);
-            break;
-        }
-
-        UpdateState();
-    }
-*/
     void UpdateState()
     { 
         float playerDistanceXZ = GetPlayerVectorXZ().magnitude;

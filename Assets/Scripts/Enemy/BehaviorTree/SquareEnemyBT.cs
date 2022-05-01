@@ -31,12 +31,6 @@ public class SquareEnemyBT : BehaviorTree.Tree
                 new TaskDodgeProjectile(this),
             });
 
-        EventManager.AddListener<Event_Player_Fire_Projectile>(OnPlayerProjectileFire);
         return root;
-    }
-
-    void OnPlayerProjectileFire(Event_Player_Fire_Projectile evt)
-    {
-        SetData("dodge event", evt);
     }
 }
