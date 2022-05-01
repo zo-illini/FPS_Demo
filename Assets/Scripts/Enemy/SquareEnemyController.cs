@@ -22,7 +22,7 @@ public class SquareEnemyController : BaseEnemyController
 
     List<GameObject> m_protectingEnemies;
 
-
+/*
     new void Start()
     {
         base.Start();
@@ -53,7 +53,7 @@ public class SquareEnemyController : BaseEnemyController
         UpdateState();
         UpdateProtection();
     }
-
+*/
     new void OnEnemyKilled()
     {
         // Clear the "protected" state of nearby enemies

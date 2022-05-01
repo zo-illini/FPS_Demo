@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 796312651783114672}
   - component: {fileID: 255156377394888101}
   - component: {fileID: 6881611435350688654}
+  - component: {fileID: 6873826281094777903}
   m_Layer: 9
   m_Name: SquareEnemy
   m_TagString: Untagged
@@ -174,6 +175,22 @@ MonoBehaviour:
   m_dodgeDistance: 3
   m_alertTurnVelocity: 360
   m_protectRadius: 30
+--- !u!114 &6873826281094777903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351732573180040196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b90a5a1bc5af4c243bcfa5828d256b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_alertRadius: 15
+  m_alertTurnSpeed: 360
+  m_dodgeSpeed: 20
+  m_dodgeDistance: 3
 --- !u!1001 &6101245572620187390
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -88,7 +88,7 @@ public class GameWorld : MonoBehaviour
         m_enemyList = new List<GameObject>();
 
         //m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-15, 2, -10), Quaternion.identity));
-        m_enemyList.Add(Instantiate(m_circleEnemyPrefab, new Vector3(-20, 2, -10), Quaternion.identity));
+        m_enemyList.Add(Instantiate(m_squareEnemyPrefab, new Vector3(-20, 2, -10), Quaternion.identity));
 
         m_enemyList.Add(Instantiate(m_circleEnemyPrefab, new Vector3(-35, 2, -20), Quaternion.identity));
         m_enemyList.Add(Instantiate(m_circleEnemyPrefab, new Vector3(-50, 2, -20), Quaternion.identity));
