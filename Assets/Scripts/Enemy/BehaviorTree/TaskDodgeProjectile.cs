@@ -34,7 +34,7 @@ public class TaskDodgeProjectile : Node
         {
             RaycastHit hit;
             Event_Player_Fire_Projectile evt = (Event_Player_Fire_Projectile)m_tree.GetData("dodge event");
-            if (evt != null)
+            if (evt != null && evt.m_transform != null)
             {
                 Physics.SphereCast(evt.m_transform.position, evt.m_radius, evt.m_transform.forward, out hit, (float)m_tree.GetData("alert radius"));
                 if (hit.collider == m_self.GetComponent<Collider>())

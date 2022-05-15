@@ -66,7 +66,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineWidth: 0.0025
+    - _OutlineWidth: 0.003
     - _Parallax: 0.02
     - _RimMax: 1
     - _RimMin: 0.5
@@ -84,6 +84,6 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainColor: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
     - _OutLineColor: {r: 0.6320754, g: 0.43927252, b: 0.43927252, a: 1}
-    - _RimColor: {r: 1, g: 0.8459119, b: 0.8459119, a: 0.078431375}
+    - _RimColor: {r: 1, g: 0.8459119, b: 0.8459119, a: 0.11764706}
     - _ShadowColor: {r: 0.7058824, g: 0.7058824, b: 0.8039216, a: 1}
   m_BuildTextureStacks: []

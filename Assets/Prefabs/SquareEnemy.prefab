@@ -174,7 +174,7 @@ MonoBehaviour:
   m_dodgeSpeed: 20
   m_dodgeDistance: 3
   m_alertTurnVelocity: 360
-  m_protectRadius: 30
+  m_protectRadius: 15
 --- !u!114 &6873826281094777903
 MonoBehaviour:
   m_ObjectHideFlags: 0
