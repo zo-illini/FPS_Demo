@@ -18,6 +18,7 @@ public class TriangleEnemyBT : BehaviorTree.Tree
 
     protected override Node InitializeTree()
     {
+
         GameWorld world = FindObjectOfType<GameWorld>();
 
         SetData("player", world.m_player);

@@ -148,9 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1026efe22e2b2e549ad0418d396cf2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_patrolRadius: 10
-  m_patrolSpeed: 3
-  m_alertRadius: 15
+  m_patrolRadius: 5
+  m_patrolSpeed: 2
+  m_alertRadius: 10
   m_attackRadius: 7
   m_attackDashSpeed: 10
   m_attackDashOverDistance: 3

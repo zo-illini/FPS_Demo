@@ -33,7 +33,8 @@ public class TaskPatrol : Node
 
     public override NodeState Evaluate()
     {
-
+        m_agent.speed = m_patrolSpeed;
+        m_agent.isStopped = false;
         Vector2 posXZ = new Vector2(m_object.transform.position.x, m_object.transform.position.z);
         if ((posXZ - new Vector2(m_patrolDestination.x, m_patrolDestination.z)).magnitude < 0.5f)
         {
@@ -42,8 +43,7 @@ public class TaskPatrol : Node
         else
         {
             m_agent.SetDestination(m_patrolDestination);
-            m_agent.speed = m_patrolSpeed;
-            m_agent.isStopped = false;
+            
         }
 
         m_state = NodeState.RUNNING;

@@ -3,9 +3,13 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum EnemyType {Triangle, Circle, Square };
+
 public class GameWorld : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject m_playerStart;
+
     public GameObject m_playerPrefab;
 
     public GameObject m_simpleEnemyPrefab;
@@ -80,10 +84,37 @@ public class GameWorld : MonoBehaviour
 
     void InitializePlayer()
     {
-        m_player = Instantiate(m_playerPrefab, Vector3.zero, Quaternion.Euler(0, 210, 0));
+        Vector3 pos = Vector3.zero;
+        Quaternion rot = Quaternion.identity;
+        if (m_playerStart) 
+        {
+            pos = m_playerStart.transform.position;
+            rot = m_playerStart.transform.rotation;
+        }   
+        m_player = Instantiate(m_playerPrefab, pos, rot);
     }
 
     void InitializeScene()
+    {
+        InitializeEnemies();
+        // Deal with events
+        EventManager.AddListener<Event_Enemy_Die>(OnEnemyKilled);
+        EventManager.AddListener<Event_Win>(OnWin);
+        EventManager.AddListener<Event_Player_Die>(OnPlyaerDie);
+
+    }
+
+    void InitializeEnemies() 
+    {
+        m_enemyList = new List<GameObject>();
+        foreach (EnemySpawn obj in FindObjectsOfType<EnemySpawn>()) 
+        {
+            CreateEnemy(obj.type, obj.transform);
+        }
+    }
+
+    /*
+    private void InitializeEnemies()
     {
         m_enemyList = new List<GameObject>();
 
@@ -112,13 +143,31 @@ public class GameWorld : MonoBehaviour
         m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-35, 2, -57), Quaternion.identity));
 
         m_totalEnemyCount = 15;
+    
+    }
+    */
 
-
-        // Deal with events
-        EventManager.AddListener<Event_Enemy_Die>(OnEnemyKilled);
-        EventManager.AddListener<Event_Win>(OnWin);
-        EventManager.AddListener<Event_Player_Die>(OnPlyaerDie);
-
+    public GameObject CreateEnemy(EnemyType type, Transform transform) 
+    {
+        GameObject ret;
+        switch (type) 
+        {
+            case EnemyType.Triangle:
+                ret = Instantiate(m_triangleEnemyPrefab, transform.position, transform.rotation);
+                break;
+            case EnemyType.Circle:
+                ret = Instantiate(m_circleEnemyPrefab, transform.position, transform.rotation);
+                break;
+            case EnemyType.Square:
+                ret = Instantiate(m_squareEnemyPrefab, transform.position, transform.rotation);
+                break;
+            default:
+                ret = null;
+                break;
+        }
+        m_enemyList.Add(ret);
+        m_totalEnemyCount += 1;
+        return ret;
     }
 
     void OnEnemyKilled(Event_Enemy_Die evt)
