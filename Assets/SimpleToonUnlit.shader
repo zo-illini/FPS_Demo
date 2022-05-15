@@ -150,5 +150,7 @@
             }
             ENDCG
         }
+    UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
+
     }
 }
