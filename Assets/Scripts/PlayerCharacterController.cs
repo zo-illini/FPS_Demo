@@ -76,4 +76,12 @@ public class PlayerCharacterController : MonoBehaviour
             TakeDamage(20);
         }
     }
+
+    public void InteractableCallBack(Interactable obj) 
+    {
+        if (m_input.GetInteract()) 
+        {
+            obj.Interact();
+        }
+    }
 }

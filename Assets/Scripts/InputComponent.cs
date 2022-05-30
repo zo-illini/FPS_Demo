@@ -48,4 +48,9 @@ public class InputComponent : MonoBehaviour
     {
         return Input.GetMouseButton(1);
     }
+
+    public bool GetInteract() 
+    {
+        return Input.GetKey(KeyCode.E);
+    }
 }
