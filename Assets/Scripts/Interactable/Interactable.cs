@@ -5,9 +5,6 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     protected bool m_closeToPlayer = false;
-
-    protected bool m_isInteracting = false;
-
     // Start is called before the first frame update
 
     private void Start()
@@ -15,7 +12,7 @@ public class Interactable : MonoBehaviour
         EventManager.AddListener<Event_Player_Interact>(OnInteract);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
             m_closeToPlayer = true;
@@ -27,7 +24,7 @@ public class Interactable : MonoBehaviour
             m_closeToPlayer = true;   
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
             m_closeToPlayer = false;
