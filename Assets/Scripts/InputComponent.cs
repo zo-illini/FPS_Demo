@@ -51,6 +51,6 @@ public class InputComponent : MonoBehaviour
 
     public bool GetInteract() 
     {
-        return Input.GetKey(KeyCode.E);
+        return Input.GetKeyDown(KeyCode.E);
     }
 }

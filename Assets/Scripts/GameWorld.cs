@@ -32,7 +32,7 @@ public class GameWorld : MonoBehaviour
 
     MissionUI m_missionUI;
 
-    DialogueUI m_dialogueUI;
+    public DialogueUI m_dialogueUI;
 
     Canvas m_canvas;
 
@@ -94,7 +94,6 @@ public class GameWorld : MonoBehaviour
         m_missionUI.InitializeMainUI(m_enemyList.Count);
         m_dialogueUI.InitializeDialogueUI();
 
-        m_dialogueUI.StartDialogue();
     }
 
     void InitializePlayer()

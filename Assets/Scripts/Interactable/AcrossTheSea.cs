@@ -5,14 +5,15 @@ using UnityEngine;
 public class AcrossTheSea : Interactable
 {
     bool m_hasInteracted = false;
-    public override bool Interact()
+    GameObject Player;
+    public override void Interact(Event_Player_Interact evt)
     {
-        if (m_playerController && !m_hasInteracted) 
+        if (!m_hasInteracted) 
         {
-            m_playerController.gameObject.transform.position += new Vector3(8, 0, 0);
+            Player = FindObjectOfType<GameWorld>().m_player;
+            Player.transform.position += new Vector3(8, 0, 0);
         }
 
         m_hasInteracted = true;
-        return true;
     }
 }

@@ -4,28 +4,44 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
+    protected bool m_closeToPlayer = false;
 
     protected bool m_isInteracting = false;
 
-    protected PlayerCharacterController m_playerController;
     // Start is called before the first frame update
+
+    private void Start()
+    {
+        EventManager.AddListener<Event_Player_Interact>(OnInteract);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+            m_closeToPlayer = true;
+    }
 
     void OnTriggerStay(Collider other)
     {
-        if (!m_isInteracting && other.gameObject.tag == "Player") 
-        {
-            if (!m_playerController)
-            {
-                m_playerController = other.gameObject.GetComponent<PlayerCharacterController>();
-            }
-            m_playerController.InteractableCallBack(this);
-            
-        }
+        if (other.gameObject.tag == "Player") 
+            m_closeToPlayer = true;   
     }
 
-    virtual public bool Interact() 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+            m_closeToPlayer = false;
+    }
+
+    void OnInteract(Event_Player_Interact evt) 
+    {
+        if (m_closeToPlayer)
+            Interact(evt);
+
+    }
+
+    virtual public void Interact(Event_Player_Interact evt) 
     {
         Debug.Log("Interact");
-        return !m_isInteracting;
     }
 }

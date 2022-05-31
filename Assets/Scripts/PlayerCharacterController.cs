@@ -57,6 +57,11 @@ public class PlayerCharacterController : MonoBehaviour
         {
             m_weapon.Shoot(m_camera.transform.forward, 1);
         }
+
+        if (m_input.GetInteract()) 
+        {
+            EventManager.Broadcast(Events.EventPlayerInteract);
+        }
     }
 
     public void TakeDamage(float damage)
@@ -77,11 +82,4 @@ public class PlayerCharacterController : MonoBehaviour
         }
     }
 
-    public void InteractableCallBack(Interactable obj) 
-    {
-        if (m_input.GetInteract()) 
-        {
-            obj.Interact();
-        }
-    }
 }

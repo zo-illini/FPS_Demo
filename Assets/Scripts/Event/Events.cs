@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +11,8 @@ public static class Events
     public static Event_Player_Die EventPlayerDie= new Event_Player_Die();
 
     public static Event_Player_Fire_Projectile EventPlayerFireProjectile= new Event_Player_Fire_Projectile();
+
+    public static Event_Player_Interact EventPlayerInteract = new Event_Player_Interact();
 
 
 };
@@ -32,3 +34,5 @@ public class Event_Player_Fire_Projectile : GameEvent
     
     public bool m_isSphere;
 };
+
+public class Event_Player_Interact : GameEvent { };
