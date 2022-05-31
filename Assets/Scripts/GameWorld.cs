@@ -32,6 +32,8 @@ public class GameWorld : MonoBehaviour
 
     MissionUI m_missionUI;
 
+    DialogueUI m_dialogueUI;
+
     Canvas m_canvas;
 
     Button m_startButton;
@@ -62,8 +64,11 @@ public class GameWorld : MonoBehaviour
         // Create Mission UI
         m_missionUI = GetComponentInChildren<Text>().gameObject.AddComponent<MissionUI>();
 
-        m_killCount = 0;
+        // Creaate Dialogue UI
+        //m_dialogueUI = GetComponentInChildren<Image>().gameObject.AddComponent<DialogueUI>();
+        m_dialogueUI = GetComponentInChildren<DialogueUI>();
 
+        m_killCount = 0;
     }
 
     // Update is called once per frame
@@ -87,6 +92,9 @@ public class GameWorld : MonoBehaviour
         InitializePlayer();
         InitializeScene();
         m_missionUI.InitializeMainUI(m_enemyList.Count);
+        m_dialogueUI.InitializeDialogueUI();
+
+        m_dialogueUI.StartDialogue();
     }
 
     void InitializePlayer()
