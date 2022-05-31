@@ -30,6 +30,8 @@ public class GameWorld : MonoBehaviour
 
     GameObject m_gameHUD;
 
+    MissionUI m_missionUI;
+
     Canvas m_canvas;
 
     Button m_startButton;
@@ -57,6 +59,9 @@ public class GameWorld : MonoBehaviour
         m_tempCamera = new GameObject();
         m_tempCamera.AddComponent<Camera>();
 
+        // Create Mission UI
+        m_missionUI = GetComponentInChildren<Text>().gameObject.AddComponent<MissionUI>();
+
         m_killCount = 0;
 
     }
@@ -81,6 +86,7 @@ public class GameWorld : MonoBehaviour
         // More Initialization
         InitializePlayer();
         InitializeScene();
+        m_missionUI.InitializeMainUI(m_enemyList.Count);
     }
 
     void InitializePlayer()
