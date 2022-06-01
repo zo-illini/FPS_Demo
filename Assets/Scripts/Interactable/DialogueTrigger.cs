@@ -12,8 +12,6 @@ public class DialogueTrigger : Interactable
     GameWorld m_world;
     public override void Interact(Event_Player_Interact evt)
     {
-        if (!m_world)
-            m_world = FindObjectOfType<GameWorld>();
         if (!m_isShowingDialogue)
         {
             m_world.m_dialogueUI.StartDialogue(this);
@@ -30,12 +28,23 @@ public class DialogueTrigger : Interactable
         m_isShowingDialogue = false;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player") 
+        {
+            m_closeToPlayer = true;
+            if (!m_world)
+                m_world = FindObjectOfType<GameWorld>();
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player") 
         {
             m_closeToPlayer = false;
-            m_world.m_dialogueUI.FinishDialogue();
+            if (m_isShowingDialogue)
+                m_world.m_dialogueUI.FinishDialogue();
         }
 
 

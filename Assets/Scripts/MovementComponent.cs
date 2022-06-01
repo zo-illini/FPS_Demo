@@ -47,8 +47,7 @@ public class MovementComponent : MonoBehaviour
 
     public void HandleRotation(Vector2 vector)
     {
-        transform.RotateAround (transform.position, Vector3.up, vector.x * m_rotationSpeed * Time.deltaTime); 
-        //transform.RotateAround (Vector3.zero, transform.right, vector.y * m_rotationSpeed);
+        transform.Rotate(new Vector3(0, vector.x, 0) * m_rotationSpeed * Time.deltaTime);
     }
 
     public bool IsGrounded()

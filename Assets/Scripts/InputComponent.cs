@@ -1,24 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InputComponent : MonoBehaviour
 {
-    Vector2 m_preRotation;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        m_preRotation = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public Vector3 GetAxis()
     {
         return (GetAxisXZ() + GetAxisY()).normalized;
@@ -36,7 +21,7 @@ public class InputComponent : MonoBehaviour
 
     public Vector2 GetRotationDelta()
     {
-        return new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) - m_preRotation;
+        return new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
     }
 
     public bool GetShoot()
