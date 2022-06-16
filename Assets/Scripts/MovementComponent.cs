@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class MovementComponent : MonoBehaviour
+public class MovementComponent : NetworkBehaviour
 {
     // Start is called before the first frame update
 
@@ -29,15 +30,26 @@ public class MovementComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void HandleMovementXZ(Vector3 movement)
+    public void HandleAllMovement(Vector3 movement, Vector2 rotation) 
+    {
+        if (isLocalPlayer) 
+        {
+            CmdHandleMovementXZ(movement);
+            CmdHandleRotation(rotation);
+        }
+    }
+
+    [Command]
+    public void CmdHandleMovementXZ(Vector3 movement)
     {
         transform.Translate(movement * m_speed * Time.deltaTime, Space.Self);
     }
 
-    public void HandleJump(Vector3 vector)
+    [Command]
+    public void CmdHandleJump(Vector3 vector)
     {
         if (IsGrounded())
         {
@@ -45,7 +57,8 @@ public class MovementComponent : MonoBehaviour
         }
     }
 
-    public void HandleRotation(Vector2 vector)
+    [Command]
+    public void CmdHandleRotation(Vector2 vector)
     {
         transform.Rotate(new Vector3(0, vector.x, 0) * m_rotationSpeed * Time.deltaTime);
     }

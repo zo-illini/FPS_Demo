@@ -89,7 +89,7 @@ public class GameWorld : MonoBehaviour
         m_gameHUD = Instantiate(m_gameHUDPrefab);
 
         // More Initialization
-        InitializePlayer();
+        //InitializePlayer();
         InitializeScene();
         m_missionUI.InitializeMainUI(m_enemyList.Count);
         m_dialogueUI.InitializeDialogueUI();
@@ -222,7 +222,7 @@ public class GameWorld : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.5f);
         if (Application.isEditor)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+            //UnityEditor.EditorApplication.isPlaying = false;
         }
         else
         {

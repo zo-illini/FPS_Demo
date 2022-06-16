@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerCharacterController : MonoBehaviour
+public class PlayerCharacterController : NetworkBehaviour
 {
 
     MovementComponent m_movement;
@@ -32,16 +33,21 @@ public class PlayerCharacterController : MonoBehaviour
 
         m_health = GetComponent<Health>();
         m_health.SetOnDeath(OnPlayerDie);
+
+        m_camera.enabled = isLocalPlayer;
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_movement.HandleMovementXZ(m_input.GetAxisXZ());
-        m_movement.HandleJump(m_input.GetAxisY());
+
+        //m_movement.CmdHandleMovementXZ(m_input.GetAxisXZ());
+        //m_movement.CmdHandleJump(m_input.GetAxisY());
 
         Vector2 rotation = m_input.GetRotationDelta();
-        m_movement.HandleRotation(rotation);
+        //m_movement.CmdHandleRotation(rotation);
+        m_movement.HandleAllMovement(m_input.GetAxisXZ(), rotation);
+
 
         // Rotate and Clamp Camera on X rotation
         m_curCameraAngleX -= rotation.y * m_cameraSpeedY * Time.deltaTime;

@@ -44,7 +44,7 @@ public class Health : MonoBehaviour
         }
 
         // Point the world space health bar toward player
-        if (m_hasUI)
+        if (m_hasUI && m_player)
         {
             m_healthBarUI.transform.LookAt(m_player.transform);
         }
