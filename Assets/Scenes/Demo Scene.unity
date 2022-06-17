@@ -10114,7 +10114,6 @@ GameObject:
   - component: {fileID: 1859454461}
   - component: {fileID: 1859454460}
   - component: {fileID: 1859454462}
-  - component: {fileID: 1859454463}
   m_Layer: 0
   m_Name: GameWorld
   m_TagString: Untagged
@@ -10184,7 +10183,10 @@ MonoBehaviour:
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
   m_OnlineScene: 
-  m_SpawnPrefabs: []
+  m_SpawnPrefabs:
+  - {fileID: 3351732573180040196, guid: 333691c1249a00d45aabc78ff62507cf, type: 3}
+  - {fileID: 3351732573180040196, guid: c617565256c89f740862337dcae13ea8, type: 3}
+  - {fileID: 3351732573180040196, guid: 6c046119a71857542b4134adffb83a65, type: 3}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -10240,22 +10242,6 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
---- !u!114 &1859454463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859454459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4394a3eef724546f896557197e2d6c44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
-  showGUI: 1
-  offsetX: 0
-  offsetY: 0
 --- !u!1001 &1864309945
 PrefabInstance:
   m_ObjectHideFlags: 0
