@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -91,17 +91,18 @@ public class GameWorld : MonoBehaviour
     void StartGameServer() 
     {
         manager.StartHost();
-        StartCoroutine(StartGame());
+        StartCoroutine(StartGame(true));
     }
 
     void StartGameClient()
     {
         manager.StartClient();
-        StartCoroutine(StartGame());
+        StartCoroutine(StartGame(false));
     }
 
-    IEnumerator StartGame()
+    IEnumerator StartGame(bool isHost)
     {
+        //暂时使用延时避开NetworkManager中创建Player的时序无法插手的问题
         yield return new WaitForSeconds(0.2f);
         // Exit Start Menu
         Destroy(m_startMenu);
@@ -114,9 +115,16 @@ public class GameWorld : MonoBehaviour
 
         // More Initialization
         InitializePlayer();
-        InitializeScene();
+        if (isHost)
+            InitializeEnemies();
         m_missionUI.InitializeMainUI(m_enemyList.Count);
         m_dialogueUI.InitializeDialogueUI();
+
+        // Deal with events
+        EventManager.AddListener<Event_Enemy_Die>(OnEnemyKilled);
+        EventManager.AddListener<Event_Win>(OnWin);
+        EventManager.AddListener<Event_Player_Die>(OnPlyaerDie);
+        
 
     }
 
@@ -131,20 +139,8 @@ public class GameWorld : MonoBehaviour
                     player.GetComponent<PlayerCharacterController>().CmdInitializePosition(m_playerStart.transform.position, m_playerStart.transform.rotation);
                 // Show player health bar
                 m_player.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
-                Debug.LogWarning("Hi");
-
             }
         }
-    }
-
-    void InitializeScene()
-    {
-        InitializeEnemies();
-        // Deal with events
-        EventManager.AddListener<Event_Enemy_Die>(OnEnemyKilled);
-        EventManager.AddListener<Event_Win>(OnWin);
-        EventManager.AddListener<Event_Player_Die>(OnPlyaerDie);
-
     }
 
     void InitializeEnemies() 
@@ -210,6 +206,7 @@ public class GameWorld : MonoBehaviour
         }
         m_enemyList.Add(ret);
         m_totalEnemyCount += 1;
+        NetworkServer.Spawn(ret);
         return ret;
     }
 
