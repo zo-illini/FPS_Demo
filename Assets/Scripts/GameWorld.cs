@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Networking;
 
 public enum EnemyType {Triangle, Circle, Square };
 
@@ -26,9 +27,12 @@ public class GameWorld : MonoBehaviour
     public GameObject m_startMenuPrefab;
 
     public GameObject m_gameHUDPrefab;
+    
     GameObject m_startMenu;
 
     GameObject m_gameHUD;
+
+    NetworkManager manager;
 
     MissionUI m_missionUI;
 
@@ -36,7 +40,9 @@ public class GameWorld : MonoBehaviour
 
     Canvas m_canvas;
 
-    Button m_startButton;
+    Button m_startButtonServer;
+
+    Button m_startButtonClient;
 
     GameObject m_tempCamera;
 
@@ -45,17 +51,22 @@ public class GameWorld : MonoBehaviour
     int m_killCount;
     public List<GameObject> m_enemyList {get; private set;}
 
-    void Start()
+    void Awake()
     {
         // Create Start Game Menu
         m_startMenu = Instantiate(m_startMenuPrefab);
         m_canvas = m_startMenu.GetComponentInChildren<Canvas>();
-        m_startButton = m_startMenu.GetComponentInChildren<Button>();
+        m_startButtonServer = m_startMenu.GetComponentsInChildren<Button>()[0];
+        m_startButtonClient = m_startMenu.GetComponentsInChildren<Button>()[1];
 
-        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+
+        manager = GetComponent<NetworkManager>();
+
         m_canvas.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
 
-        m_startButton.onClick.AddListener(StartGame);
+        m_startButtonServer.onClick.AddListener(StartGameServer);
+        m_startButtonClient.onClick.AddListener(StartGameClient);
+
 
         // Create a temporary camera
         m_tempCamera = new GameObject();
@@ -77,8 +88,21 @@ public class GameWorld : MonoBehaviour
         
     }
 
-    void StartGame()
+    void StartGameServer() 
     {
+        manager.StartHost();
+        StartCoroutine(StartGame());
+    }
+
+    void StartGameClient()
+    {
+        manager.StartClient();
+        StartCoroutine(StartGame());
+    }
+
+    IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(0.2f);
         // Exit Start Menu
         Destroy(m_startMenu);
         Cursor.visible = false;
@@ -89,7 +113,7 @@ public class GameWorld : MonoBehaviour
         m_gameHUD = Instantiate(m_gameHUDPrefab);
 
         // More Initialization
-        //InitializePlayer();
+        InitializePlayer();
         InitializeScene();
         m_missionUI.InitializeMainUI(m_enemyList.Count);
         m_dialogueUI.InitializeDialogueUI();
@@ -98,14 +122,19 @@ public class GameWorld : MonoBehaviour
 
     void InitializePlayer()
     {
-        Vector3 pos = Vector3.zero;
-        Quaternion rot = Quaternion.identity;
-        if (m_playerStart) 
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) 
         {
-            pos = m_playerStart.transform.position;
-            rot = m_playerStart.transform.rotation;
-        }   
-        m_player = Instantiate(m_playerPrefab, pos, rot);
+            if (player.GetComponent<PlayerCharacterController>().isLocalPlayer) 
+            {
+                m_player = player;
+                if (m_playerStart)
+                    player.GetComponent<PlayerCharacterController>().CmdInitializePosition(m_playerStart.transform.position, m_playerStart.transform.rotation);
+                // Show player health bar
+                m_player.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
+                Debug.LogWarning("Hi");
+
+            }
+        }
     }
 
     void InitializeScene()

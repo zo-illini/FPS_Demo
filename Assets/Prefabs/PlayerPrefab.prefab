@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8f6edb5f525646140903b35fd992632c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -526,9 +526,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBarUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4480562134967229087, guid: 11ba52ba0a7de074b8fefc87b612f0df, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5229850999497077824, guid: 11ba52ba0a7de074b8fefc87b612f0df, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -4.700012
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893472090847516711, guid: 11ba52ba0a7de074b8fefc87b612f0df, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7162014380948526778, guid: 11ba52ba0a7de074b8fefc87b612f0df, type: 3}
       propertyPath: m_PresetInfoIsWorld
@@ -536,11 +544,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9159789080213235980, guid: 11ba52ba0a7de074b8fefc87b612f0df, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9159789080213235980, guid: 11ba52ba0a7de074b8fefc87b612f0df, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11ba52ba0a7de074b8fefc87b612f0df, type: 3}
