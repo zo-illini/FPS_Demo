@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace BehaviorTree
 {
-public abstract class Tree : MonoBehaviour
+public abstract class Tree : NetworkBehaviour
 {
     private Node _root;
 
@@ -17,7 +18,7 @@ public abstract class Tree : MonoBehaviour
 
     private void Update()
     {
-        if (_root != null)
+        if (_root != null && isServer)
             _root.Evaluate();
     }
 
