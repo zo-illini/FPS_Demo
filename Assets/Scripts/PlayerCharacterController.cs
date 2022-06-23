@@ -64,6 +64,9 @@ public class PlayerCharacterController : NetworkBehaviour
         if (m_input.GetSwitchWeapon()) 
         {
             m_currentWeaponID = m_currentWeaponID == 0 ? 1 : 0;
+            Event_Player_Switch_Weapon evt = new Event_Player_Switch_Weapon();
+            evt.m_newWeaponID = m_currentWeaponID;
+            EventManager.Broadcast(evt);
         }
 
         //if (m_input.GetShootSecondary())

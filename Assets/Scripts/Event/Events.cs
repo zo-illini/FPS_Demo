@@ -14,6 +14,8 @@ public static class Events
 
     public static Event_Player_Interact EventPlayerInteract = new Event_Player_Interact();
 
+    public static Event_Player_Switch_Weapon EventPlayerSwitchWeapon = new Event_Player_Switch_Weapon();
+
 
 };
 
@@ -36,3 +38,8 @@ public class Event_Player_Fire_Projectile : GameEvent
 };
 
 public class Event_Player_Interact : GameEvent { };
+
+public class Event_Player_Switch_Weapon : GameEvent 
+{
+    public int m_newWeaponID;
+}
