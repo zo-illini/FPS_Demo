@@ -19,6 +19,8 @@ public class PlayerCharacterController : NetworkBehaviour
 
     Health m_health;
 
+    int m_currentWeaponID;
+
     // Start is called before the first frame update
     void Start()
     {   
@@ -56,13 +58,18 @@ public class PlayerCharacterController : NetworkBehaviour
 
         if (m_input.GetShoot())
         {
-            m_weapon.Shoot(m_camera.transform.forward, 0);
+            m_weapon.Shoot(m_camera.transform.forward, m_currentWeaponID);
         }
 
-        if (m_input.GetShootSecondary())
+        if (m_input.GetSwitchWeapon()) 
         {
-            m_weapon.Shoot(m_camera.transform.forward, 1);
+            m_currentWeaponID = m_currentWeaponID == 0 ? 1 : 0;
         }
+
+        //if (m_input.GetShootSecondary())
+        //{
+        //    m_weapon.Shoot(m_camera.transform.forward, 1);
+        //}
 
         if (m_input.GetInteract()) 
         {

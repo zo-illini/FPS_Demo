@@ -38,4 +38,9 @@ public class InputComponent : MonoBehaviour
     {
         return Input.GetKeyDown(KeyCode.E);
     }
+
+    public bool GetSwitchWeapon() 
+    {
+        return Input.mouseScrollDelta != Vector2.zero;
+    }
 }
