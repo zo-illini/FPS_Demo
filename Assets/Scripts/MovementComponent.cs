@@ -33,12 +33,13 @@ public class MovementComponent : NetworkBehaviour
 
     }
 
-    public void HandleAllMovement(Vector3 movement, Vector2 rotation) 
+    public void HandleAllMovement(Vector3 movement, Vector3 jumpVector, Vector2 rotation) 
     {
         if (isLocalPlayer) 
         {
             CmdHandleMovementXZ(movement);
             CmdHandleRotation(rotation);
+            CmdHandleJump(jumpVector);
         }
     }
 

@@ -46,7 +46,7 @@ public class PlayerCharacterController : NetworkBehaviour
 
         Vector2 rotation = m_input.GetRotationDelta();
         //m_movement.CmdHandleRotation(rotation);
-        m_movement.HandleAllMovement(m_input.GetAxisXZ(), rotation);
+        m_movement.HandleAllMovement(m_input.GetAxisXZ(), m_input.GetAxisY(), rotation);
 
 
         // Rotate and Clamp Camera on X rotation
