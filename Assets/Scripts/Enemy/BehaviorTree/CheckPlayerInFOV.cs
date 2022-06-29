@@ -23,6 +23,18 @@ public class CheckPlayerInFOV : Node
 
     public override NodeState Evaluate()
     {
+
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) 
+        {
+            if (Vector3.Distance(m_self.transform.position, player.transform.position) < m_range)
+            {
+                m_tree.SetData("moveTarget", player);
+                m_state = NodeState.SUCCESS;
+                return m_state;
+            }
+        }
+
+        /*
         if (m_player != null)
         {
             if (Vector3.Distance(m_self.transform.position, m_player.transform.position) < m_range)
@@ -36,8 +48,9 @@ public class CheckPlayerInFOV : Node
                 return m_state;
             }
         }
+        */
 
-        m_state = NodeState.SUCCESS;
+        m_state = NodeState.FAILTURE;
         return m_state;
     }
 }

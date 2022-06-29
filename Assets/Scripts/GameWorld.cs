@@ -114,7 +114,7 @@ public class GameWorld : MonoBehaviour
         m_gameHUD = Instantiate(m_gameHUDPrefab);
 
         // More Initialization
-        InitializePlayer();
+        LocalInitializePlayer();
         if (isHost)
             InitializeEnemies();
         m_missionUI.InitializeMainUI(m_enemyList.Count);
@@ -128,17 +128,18 @@ public class GameWorld : MonoBehaviour
 
     }
 
-    void InitializePlayer()
+    void LocalInitializePlayer() 
     {
-        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) 
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
-            if (player.GetComponent<PlayerCharacterController>().isLocalPlayer) 
+            if (player.GetComponent<PlayerCharacterController>().isLocalPlayer)
             {
                 m_player = player;
                 if (m_playerStart)
                     player.GetComponent<PlayerCharacterController>().CmdInitializePosition(m_playerStart.transform.position, m_playerStart.transform.rotation);
                 // Show player health bar
                 m_player.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
+
             }
         }
     }

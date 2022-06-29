@@ -24,20 +24,27 @@ public class TaskMoveToPlayer : Node
 
     public override NodeState Evaluate()
     {
-        NavMeshAgent agent = m_self.GetComponent<NavMeshAgent>();
+        GameObject target = (GameObject)m_tree.GetData("moveTarget");
+        if (!target) 
+        {
+            NavMeshAgent agent = m_self.GetComponent<NavMeshAgent>();
+
+            if (Vector3.Distance(m_self.transform.position, m_player.transform.position) < m_desiredDistance)
+            {
+                agent.isStopped = true;
+                m_state = NodeState.SUCCESS;
+                return m_state;
+            }
+            else
+            {
+                agent.SetDestination(m_player.transform.position);
+                agent.isStopped = false;
+                m_state = NodeState.RUNNING;
+                return m_state;
+            }
+        }
+        m_state = NodeState.FAILTURE;
+        return m_state;
         
-        if (Vector3.Distance(m_self.transform.position, m_player.transform.position) < m_desiredDistance)
-        {
-            agent.isStopped = true;
-            m_state = NodeState.SUCCESS;
-            return m_state;
-        }
-        else
-        {
-            agent.SetDestination(m_player.transform.position);
-            agent.isStopped = false;
-            m_state = NodeState.RUNNING;
-            return m_state;
-        }
     }
 }

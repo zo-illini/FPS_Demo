@@ -18,6 +18,7 @@ public abstract class Tree : NetworkBehaviour
 
     private void Update()
     {
+        // Only Run AI on Server
         if (_root != null && isServer)
             _root.Evaluate();
     }
