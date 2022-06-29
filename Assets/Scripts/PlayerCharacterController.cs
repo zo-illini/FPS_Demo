@@ -47,37 +47,38 @@ public class PlayerCharacterController : NetworkBehaviour
         //m_movement.CmdHandleJump(m_input.GetAxisY());
 
         Vector2 rotation = m_input.GetRotationDelta();
+        if (Mathf.Abs(rotation.x) > 1)
+            Debug.LogWarning(rotation.x);
         //m_movement.CmdHandleRotation(rotation);
         m_movement.HandleAllMovement(m_input.GetAxisXZ(), m_input.GetAxisY(), rotation);
 
 
-        // Rotate and Clamp Camera on X rotation
-        m_curCameraAngleX -= rotation.y * m_cameraSpeedY * Time.deltaTime;
-        m_curCameraAngleX = Mathf.Clamp(m_curCameraAngleX, -60, 60);
-        m_camera.transform.localEulerAngles = new Vector3(m_curCameraAngleX, 0, 0);
-
-        if (m_input.GetShoot())
+        if (isLocalPlayer) 
         {
-            m_weapon.Shoot(m_camera.transform.forward, m_currentWeaponID);
-        }
+            // Rotate and Clamp Camera on X rotation
+            m_curCameraAngleX -= rotation.y * m_cameraSpeedY * Time.deltaTime;
+            m_curCameraAngleX = Mathf.Clamp(m_curCameraAngleX, -60, 60);
+            m_camera.transform.localEulerAngles = new Vector3(m_curCameraAngleX, 0, 0);
 
-        if (m_input.GetSwitchWeapon()) 
-        {
-            m_currentWeaponID = m_currentWeaponID == 0 ? 1 : 0;
-            Event_Player_Switch_Weapon evt = new Event_Player_Switch_Weapon();
-            evt.m_newWeaponID = m_currentWeaponID;
-            EventManager.Broadcast(evt);
-        }
+            if (m_input.GetShoot())
+            {
+                m_weapon.Shoot(m_camera.transform.forward, m_currentWeaponID);
+            }
 
-        //if (m_input.GetShootSecondary())
-        //{
-        //    m_weapon.Shoot(m_camera.transform.forward, 1);
-        //}
+            if (m_input.GetSwitchWeapon())
+            {
+                m_currentWeaponID = m_currentWeaponID == 0 ? 1 : 0;
+                Event_Player_Switch_Weapon evt = new Event_Player_Switch_Weapon();
+                evt.m_newWeaponID = m_currentWeaponID;
+                EventManager.Broadcast(evt);
+            }
 
-        if (m_input.GetInteract()) 
-        {
-            EventManager.Broadcast(Events.EventPlayerInteract);
+            if (m_input.GetInteract())
+            {
+                EventManager.Broadcast(Events.EventPlayerInteract);
+            }
         }
+        
     }
 
     public void TakeDamage(float damage)

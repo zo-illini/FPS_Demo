@@ -11,7 +11,7 @@ public class MovementComponent : NetworkBehaviour
 
     float m_jumpForce;
 
-    float m_rotationSpeed;
+    public float m_rotationSpeed;
 
     Rigidbody m_rb;
 
