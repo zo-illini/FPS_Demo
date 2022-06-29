@@ -17,7 +17,7 @@ public class CircleEnemyBT : BehaviorTree.Tree
     {
         GameWorld world = FindObjectOfType<GameWorld>();
 
-        SetData("player", world.m_player);
+        //SetData("player", world.m_player);
         SetData("self", this.gameObject);
         SetData("patrol speed", m_patrolSpeed);
         SetData("patrol center", this.transform.position);

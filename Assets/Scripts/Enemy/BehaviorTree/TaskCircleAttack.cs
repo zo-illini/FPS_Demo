@@ -23,8 +23,15 @@ public class TaskCircleAttack : Node
 
     public override NodeState Evaluate()
     {
-        m_self.GetComponent<WeaponController>().Shoot(m_player.transform.position - m_self.transform.position, 0);
+        GameObject target = (GameObject)m_tree.GetData("moveTarget");
+        if (target) 
+        {
+            m_self.GetComponent<WeaponController>().Shoot(target.transform.position - m_self.transform.position, 0);
+        }
+
         m_state = NodeState.SUCCESS;
         return m_state;
+
+
     }
 }

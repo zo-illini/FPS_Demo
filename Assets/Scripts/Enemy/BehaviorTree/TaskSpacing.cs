@@ -29,17 +29,22 @@ public class TaskSpacing : Node
 
     public override NodeState Evaluate()
     {
-        Vector2 playerVectorXZ = new Vector2(m_player.transform.position.x - m_self.transform.position.x, m_player.transform.position.z - m_self.transform.position.z);
-        float playerDistanceXZ = playerVectorXZ.magnitude;
+        GameObject target = (GameObject)m_tree.GetData("moveTarget");
 
-        if (playerDistanceXZ < m_spacingDistance)
+        if (target) 
         {
-            Vector3 delta = -1 * (m_spacingDistance - playerDistanceXZ) * new Vector3(playerVectorXZ.x, 0, playerVectorXZ.y);
-            m_agent.SetDestination(m_self.transform.position + delta);
-            m_agent.speed = m_spacingSpeed;
-            m_agent.isStopped = false;
+            Vector2 playerVectorXZ = new Vector2(target.transform.position.x - m_self.transform.position.x, target.transform.position.z - m_self.transform.position.z);
+            float playerDistanceXZ = playerVectorXZ.magnitude;
+
+            if (playerDistanceXZ < m_spacingDistance)
+            {
+                Vector3 delta = -1 * (m_spacingDistance - playerDistanceXZ) * new Vector3(playerVectorXZ.x, 0, playerVectorXZ.y);
+                m_agent.SetDestination(m_self.transform.position + delta);
+                m_agent.speed = m_spacingSpeed;
+                m_agent.isStopped = false;
+            }
+            m_self.transform.LookAt(target.transform);
         }
-        m_self.transform.LookAt(m_player.transform);
 
         m_state = NodeState.RUNNING;
         return m_state;

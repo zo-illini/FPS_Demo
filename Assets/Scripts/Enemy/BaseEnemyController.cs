@@ -35,7 +35,7 @@ public class BaseEnemyController : MonoBehaviour
         m_randomWalkDestination = transform.position;
         m_randomWalkCenter = transform.position;
 
-        m_player = FindObjectOfType<GameWorld>().m_player;
+        //m_player = FindObjectOfType<GameWorld>().m_player;
         m_health = GetComponent<Health>();
         m_health.SetOnDeath(OnEnemyKilled);
     }

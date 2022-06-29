@@ -30,7 +30,9 @@ public class Health : MonoBehaviour
         if (m_hasUI)
         {
             m_healthBarUI = GetComponentInChildren<Canvas>().gameObject;
-            m_player = FindObjectOfType<GameWorld>().m_player;
+            GameWorld world = FindObjectOfType<GameWorld>();
+            if (world)
+                m_player = world.m_player;
         }
     }
 

@@ -15,6 +15,7 @@ public class CircleEnemyController : BaseEnemyController
 
     void UpdateState()
     { 
+        /*
         float playerDistanceXZ = GetPlayerVectorXZ().magnitude;
 
         switch(m_state)
@@ -31,6 +32,7 @@ public class CircleEnemyController : BaseEnemyController
                 
             break;
         }
+        */
     }
 
     void ChangeState(CircleEnemyState newState)
