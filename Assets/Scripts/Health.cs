@@ -33,8 +33,6 @@ public class Health : NetworkBehaviour
         {
             m_healthBarUI = GetComponentInChildren<Canvas>().gameObject;
             GameWorld world = FindObjectOfType<GameWorld>();
-            if (world)
-                m_player = world.m_player;
         }
     }
 
@@ -49,11 +47,7 @@ public class Health : NetworkBehaviour
 
         UpdateHealthUI();
 
-        // Point the world space health bar toward player
-        if (m_hasUI && m_player)
-        {
-            m_healthBarUI.transform.LookAt(m_player.transform);
-        }
+        
     }
 
     public void SetOnDeath(Action a)
@@ -73,7 +67,18 @@ public class Health : NetworkBehaviour
     {
         if (m_hasUI)
         {
-            m_healthBarUI.GetComponentInChildren<Slider>().value = m_curHealth / m_maxHealth;
+            Slider s = GetComponentInChildren<Slider>();
+            if (s)
+                s.value = m_curHealth / m_maxHealth;
+
+            // Point the world space health bar toward player
+            foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                if (player.GetComponent<PlayerCharacterController>().isLocalPlayer)
+                {
+                    m_healthBarUI.transform.LookAt(player.transform);
+                }
+            }
         }
     }
 

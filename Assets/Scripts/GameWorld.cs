@@ -139,6 +139,7 @@ public class GameWorld : MonoBehaviour
                     player.GetComponent<PlayerCharacterController>().CmdInitializePosition(m_playerStart.transform.position, m_playerStart.transform.rotation);
                 // Show player health bar
                 m_player.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
+                Debug.LogWarning(m_player.name);
 
             }
         }
