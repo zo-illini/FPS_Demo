@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class Death_Event{}
 
-public class Health : MonoBehaviour
+public class Health : NetworkBehaviour
 {
     public float m_maxHealth;
 
     public bool m_hasUI;
 
+    [SyncVar]
     float m_curHealth;
 
     Action m_onDeath;
@@ -45,6 +47,8 @@ public class Health : MonoBehaviour
             m_active = false;
         }
 
+        UpdateHealthUI();
+
         // Point the world space health bar toward player
         if (m_hasUI && m_player)
         {
@@ -59,7 +63,14 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        m_curHealth -= damage;
+        if (isServer) 
+        {
+            m_curHealth -= damage;
+        }
+    }
+
+    void UpdateHealthUI() 
+    {
         if (m_hasUI)
         {
             m_healthBarUI.GetComponentInChildren<Slider>().value = m_curHealth / m_maxHealth;

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class WeaponController : MonoBehaviour
+public class WeaponController : NetworkBehaviour
 {
     public GameObject m_primaryProjectilePrefab;
 
@@ -42,7 +43,10 @@ public class WeaponController : MonoBehaviour
         }
     }
 */
-    public void Shoot(Vector3 forward, int weaponType)
+
+    [Command]
+
+    public void CmdShoot(Vector3 forward, int weaponType)
     {
         if (CanShoot())
         {
@@ -67,6 +71,8 @@ public class WeaponController : MonoBehaviour
                 evt.m_isSphere = weaponType == 0 ? true : false;
                 EventManager.Broadcast(evt);
             }
+
+            NetworkServer.Spawn(projectile);
 
             projectile.GetComponent<Projectile>().Activate();
 

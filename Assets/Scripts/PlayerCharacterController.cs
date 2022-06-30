@@ -42,14 +42,7 @@ public class PlayerCharacterController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //m_movement.CmdHandleMovementXZ(m_input.GetAxisXZ());
-        //m_movement.CmdHandleJump(m_input.GetAxisY());
-
         Vector2 rotation = m_input.GetRotationDelta();
-        if (Mathf.Abs(rotation.x) > 1)
-            Debug.LogWarning(rotation.x);
-        //m_movement.CmdHandleRotation(rotation);
         m_movement.HandleAllMovement(m_input.GetAxisXZ(), m_input.GetAxisY(), rotation);
 
 
@@ -62,7 +55,7 @@ public class PlayerCharacterController : NetworkBehaviour
 
             if (m_input.GetShoot())
             {
-                m_weapon.Shoot(m_camera.transform.forward, m_currentWeaponID);
+                m_weapon.CmdShoot(m_camera.transform.forward, m_currentWeaponID);
             }
 
             if (m_input.GetSwitchWeapon())
