@@ -343,6 +343,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBarUI
       objectReference: {fileID: 0}
+    - target: {fileID: 7162014380948526778, guid: 11ba52ba0a7de074b8fefc87b612f0df, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9159789080213235980, guid: 11ba52ba0a7de074b8fefc87b612f0df, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

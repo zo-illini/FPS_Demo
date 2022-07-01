@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
 enum SquareEnemyState{Idle, Alert, Dodging};
 
@@ -45,6 +46,9 @@ public class SquareEnemyController : BaseEnemyController
 
     new void OnEnemyKilled()
     {
+        if (!isServer)
+            return;
+
         // Clear the "protected" state of nearby enemies
         foreach (GameObject enemy in m_world.m_enemyList)
         {
@@ -68,6 +72,9 @@ public class SquareEnemyController : BaseEnemyController
     }
     void UpdateProtection()
     {
+        if (!isServer)
+            return;
+
         // try to add all protecting enemies
         foreach (GameObject enemy in m_world.m_enemyList)
         {

@@ -11,29 +11,31 @@ public class Health : NetworkBehaviour
 {
     public float m_maxHealth;
 
-    public bool m_hasUI;
+    public bool m_isPlayer;
+
+
+    [SyncVar]
+    bool m_hasUI;
 
     [SyncVar]
     float m_curHealth;
 
     Action m_onDeath;
 
-    bool m_active;
+    public bool m_active;
 
     GameObject m_healthBarUI;
 
     GameObject m_player;
 
-    // Start is called before the first frame update
-    void Start()
+    [SyncVar]
+    bool m_isProtected;
+
+    private void Awake()
     {
+        m_hasUI = false;
         m_curHealth = m_maxHealth;
         m_active = true;
-        if (m_hasUI)
-        {
-            m_healthBarUI = GetComponentInChildren<Canvas>().gameObject;
-            GameWorld world = FindObjectOfType<GameWorld>();
-        }
     }
 
     // Update is called once per frame
@@ -44,10 +46,8 @@ public class Health : NetworkBehaviour
             m_onDeath.Invoke();
             m_active = false;
         }
-
-        UpdateHealthUI();
-
-        
+        if (m_active && m_hasUI)
+            UpdateHealthUI();
     }
 
     public void SetOnDeath(Action a)
@@ -65,33 +65,47 @@ public class Health : NetworkBehaviour
 
     void UpdateHealthUI() 
     {
-        if (m_hasUI)
-        {
-            Slider s = GetComponentInChildren<Slider>();
-            if (s)
-                s.value = m_curHealth / m_maxHealth;
+        Slider s = GetComponentInChildren<Slider>();
+        if (s)
+            s.value = m_curHealth / m_maxHealth;
 
+        if (!m_isPlayer) 
+        {
             // Point the world space health bar toward player
             foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
             {
                 if (player.GetComponent<PlayerCharacterController>().isLocalPlayer)
                 {
-                    m_healthBarUI.transform.LookAt(player.transform);
+                    if (s)
+                    {
+                        s.transform.LookAt(player.transform);
+                    }
                 }
             }
+
+            if (m_isProtected)
+            {
+                s.GetComponentsInChildren<Image>()[1].color = Color.blue;
+            }
+            else
+            {
+                s.GetComponentsInChildren<Image>()[1].color = Color.red;
+            }
         }
+
+        
     }
 
-    public void SetProtected(bool isProtected)
+    [Command]
+    public void CmdSetProtected(bool isProtected)
     {
-        if (isProtected)
-        {
-            m_healthBarUI.GetComponentsInChildren<Image>()[1].color = Color.blue;
-        }
-        else
-        {
-            m_healthBarUI.GetComponentsInChildren<Image>()[1].color = Color.red;
-        }
+        m_isProtected = isProtected;
+    }
+
+    public void InitializeUI() 
+    {
+        m_healthBarUI = GetComponentInChildren<Canvas>().gameObject;
+        m_hasUI = true;
     }
 
 

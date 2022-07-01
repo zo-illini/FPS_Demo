@@ -5,7 +5,7 @@ using UnityEngine;
 public class TriangleProjectile : Projectile
 {
 
-    GameObject m_player;
+    public GameObject m_player;
 
     public float m_flyOutTime;
     public float m_flyBackSpeed;
@@ -14,7 +14,6 @@ public class TriangleProjectile : Projectile
     // Start is called before the first frame update
     void Start()
     {
-        m_player = FindObjectOfType<GameWorld>().m_player;
         m_flyOutTimer = m_flyOutTime;
     }
 
@@ -30,14 +29,22 @@ public class TriangleProjectile : Projectile
             }
             else
             {
-                Vector3 playerDir = (m_player.transform.position - transform.position);
-                if (playerDir.magnitude < 1.0f)
+                if (m_player)
+                {
+                    Debug.Log(m_player.name);
+                    Vector3 playerDir = (m_player.transform.position - transform.position);
+                    if (playerDir.magnitude < 1.0f)
+                    {
+                        Destroy(this.gameObject);
+                    }
+                    else
+                    {
+                        transform.position += m_flyBackSpeed * playerDir.normalized * Time.deltaTime;
+                    }
+                }
+                else 
                 {
                     Destroy(this.gameObject);
-                }
-                else
-                {
-                transform.position += m_flyBackSpeed * playerDir.normalized * Time.deltaTime;
                 }
 
             }

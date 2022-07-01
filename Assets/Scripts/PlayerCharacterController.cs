@@ -55,7 +55,7 @@ public class PlayerCharacterController : NetworkBehaviour
 
             if (m_input.GetShoot())
             {
-                m_weapon.CmdShoot(m_camera.transform.forward, m_currentWeaponID);
+                m_weapon.CmdShoot(m_camera.transform.forward, m_currentWeaponID, this.gameObject);
             }
 
             if (m_input.GetSwitchWeapon())

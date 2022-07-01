@@ -26,7 +26,7 @@ public class TaskCircleAttack : Node
         GameObject target = (GameObject)m_tree.GetData("moveTarget");
         if (target) 
         {
-            m_self.GetComponent<WeaponController>().CmdShoot(target.transform.position - m_self.transform.position, 0);
+            m_self.GetComponent<WeaponController>().CmdShoot(target.transform.position - m_self.transform.position, 0, null);
         }
 
         m_state = NodeState.SUCCESS;

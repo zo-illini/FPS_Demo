@@ -138,8 +138,8 @@ public class GameWorld : MonoBehaviour
                 if (m_playerStart)
                     player.GetComponent<PlayerCharacterController>().CmdInitializePosition(m_playerStart.transform.position, m_playerStart.transform.rotation);
                 // Show player health bar
-                m_player.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
-                Debug.LogWarning(m_player.name);
+                m_player.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+                m_player.GetComponentInChildren<Health>().InitializeUI();
 
             }
         }
@@ -153,40 +153,6 @@ public class GameWorld : MonoBehaviour
             CreateEnemy(obj.type, obj.transform);
         }
     }
-
-    /*
-    private void InitializeEnemies()
-    {
-        m_enemyList = new List<GameObject>();
-
-        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-15, 2, -10), Quaternion.identity));
-        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-20, 2, -10), Quaternion.identity));
-
-        m_enemyList.Add(Instantiate(m_circleEnemyPrefab, new Vector3(-35, 2, -20), Quaternion.identity));
-        m_enemyList.Add(Instantiate(m_circleEnemyPrefab, new Vector3(-50, 2, -20), Quaternion.identity));
-
-        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-60, 2, -40), Quaternion.identity));
-
-        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-50, 2, -40), Quaternion.identity));
-        m_enemyList.Add(Instantiate(m_circleEnemyPrefab, new Vector3(-40, 2, -40), Quaternion.identity));
-
-        m_enemyList.Add(Instantiate(m_squareEnemyPrefab, new Vector3(-10, 2, -50), Quaternion.identity));
-
-        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-10, 2, -40), Quaternion.identity));
-        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-10, 2, -60), Quaternion.identity));
-
-        m_enemyList.Add(Instantiate(m_squareEnemyPrefab, new Vector3(-35, 2, -68), Quaternion.identity));
-
-        m_enemyList.Add(Instantiate(m_circleEnemyPrefab, new Vector3(-40, 2, -63), Quaternion.identity));
-        m_enemyList.Add(Instantiate(m_circleEnemyPrefab, new Vector3(-40, 2, -57), Quaternion.identity));
-
-        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-35, 2, -63), Quaternion.identity));
-        m_enemyList.Add(Instantiate(m_triangleEnemyPrefab, new Vector3(-35, 2, -57), Quaternion.identity));
-
-        m_totalEnemyCount = 15;
-    
-    }
-    */
 
     public GameObject CreateEnemy(EnemyType type, Transform transform) 
     {
@@ -206,6 +172,9 @@ public class GameWorld : MonoBehaviour
                 ret = null;
                 break;
         }
+
+        ret.GetComponent<Health>().InitializeUI();
+
         m_enemyList.Add(ret);
         m_totalEnemyCount += 1;
         NetworkServer.Spawn(ret);

@@ -46,7 +46,7 @@ public class WeaponController : NetworkBehaviour
 
     [Command]
 
-    public void CmdShoot(Vector3 forward, int weaponType)
+    public void CmdShoot(Vector3 forward, int weaponType, GameObject player)
     {
         if (CanShoot())
         {
@@ -58,6 +58,7 @@ public class WeaponController : NetworkBehaviour
             else
             {
                 projectile = Instantiate(m_secondaryProjectilePrefab, transform.position, Quaternion.identity);
+                projectile.GetComponent<TriangleProjectile>().m_player = player;
             }
             projectile.tag = m_ownedByPlayer ? "Player Projectile" : "Enemy Projectile";
             projectile.transform.forward = forward;

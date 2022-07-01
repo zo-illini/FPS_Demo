@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
 
-public class BaseEnemyController : MonoBehaviour
+public class BaseEnemyController : NetworkBehaviour
 {
     public float m_patrolSpeed;
 
@@ -99,6 +100,6 @@ public class BaseEnemyController : MonoBehaviour
     {
         m_protectorNum = isProtected ? m_protectorNum + 1 : m_protectorNum - 1;
         m_isProtected = m_protectorNum != 0;
-        m_health.SetProtected(m_isProtected);
+        m_health.CmdSetProtected(m_isProtected);
     }
 }

@@ -393,7 +393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &66213287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1745,7 +1745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &283395622
 Transform:
   m_ObjectHideFlags: 0
@@ -2512,7 +2512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &445669709
 Transform:
   m_ObjectHideFlags: 0
@@ -7237,7 +7237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1251945443
 Transform:
   m_ObjectHideFlags: 0
@@ -10187,6 +10187,9 @@ MonoBehaviour:
   - {fileID: 3351732573180040196, guid: 333691c1249a00d45aabc78ff62507cf, type: 3}
   - {fileID: 3351732573180040196, guid: c617565256c89f740862337dcae13ea8, type: 3}
   - {fileID: 3351732573180040196, guid: 6c046119a71857542b4134adffb83a65, type: 3}
+  - {fileID: 4966296341339041580, guid: 5c075bff37c7c464aaba9aa9551c88e4, type: 3}
+  - {fileID: 4966296341339041580, guid: cfa3bc05d3473a448968a79f8dc71c6b, type: 3}
+  - {fileID: 4966296341339041580, guid: 30ee695dca7616d468ff2aaa7fb54ff4, type: 3}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -10878,7 +10881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1956047133
 Transform:
   m_ObjectHideFlags: 0
@@ -11396,7 +11399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2014451685
 Transform:
   m_ObjectHideFlags: 0
@@ -11875,7 +11878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2090118726
 Transform:
   m_ObjectHideFlags: 0

@@ -175,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 125
   m_hasUI: 1
+  m_active: 0
 --- !u!114 &7667550098324076049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,6 +342,10 @@ PrefabInstance:
     - target: {fileID: 4480562134967229087, guid: 11ba52ba0a7de074b8fefc87b612f0df, type: 3}
       propertyPath: m_Name
       value: HealthBarUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162014380948526778, guid: 11ba52ba0a7de074b8fefc87b612f0df, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9159789080213235980, guid: 11ba52ba0a7de074b8fefc87b612f0df, type: 3}
       propertyPath: m_AnchorMax.x
