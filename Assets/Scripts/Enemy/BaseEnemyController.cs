@@ -102,4 +102,10 @@ public class BaseEnemyController : NetworkBehaviour
         m_isProtected = m_protectorNum != 0;
         m_health.CmdSetProtected(m_isProtected);
     }
+
+    public void InitializeOnDeath() 
+    {
+        m_health = GetComponent<Health>();
+        m_health.SetOnDeath(OnEnemyKilled);
+    }
 }

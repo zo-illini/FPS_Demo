@@ -10,8 +10,13 @@ public class AcrossTheSea : Interactable
     {
         if (!m_hasInteracted) 
         {
-            Player = FindObjectOfType<GameWorld>().m_player;
-            Player.transform.position += new Vector3(8, 0, 0);
+            foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) 
+            {
+                if (player.GetComponent<PlayerCharacterController>().isLocalPlayer) 
+                {
+                    player.transform.position += new Vector3(8, 0, 0);
+                }
+            }
         }
 
         m_hasInteracted = true;

@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 8648803134052287878}
   m_Layer: 9
   m_Name: TriangleEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,7 +137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHealth: 100
-  m_hasUI: 1
+  m_isPlayer: 0
+  m_active: 0
 --- !u!114 &6628957924985490961
 MonoBehaviour:
   m_ObjectHideFlags: 0

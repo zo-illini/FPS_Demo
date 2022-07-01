@@ -27,6 +27,8 @@ public class GameWorld : MonoBehaviour
     public GameObject m_startMenuPrefab;
 
     public GameObject m_gameHUDPrefab;
+
+    public GameObject m_mainUI;
     
     GameObject m_startMenu;
 
@@ -49,6 +51,7 @@ public class GameWorld : MonoBehaviour
     int m_totalEnemyCount;
 
     int m_killCount;
+
     public List<GameObject> m_enemyList {get; private set;}
 
     void Awake()
@@ -73,11 +76,11 @@ public class GameWorld : MonoBehaviour
         m_tempCamera.AddComponent<Camera>();
 
         // Create Mission UI
-        m_missionUI = GetComponentInChildren<Text>().gameObject.AddComponent<MissionUI>();
+        m_missionUI = m_mainUI.GetComponentInChildren<Text>().gameObject.AddComponent<MissionUI>();
 
         // Creaate Dialogue UI
         //m_dialogueUI = GetComponentInChildren<Image>().gameObject.AddComponent<DialogueUI>();
-        m_dialogueUI = GetComponentInChildren<DialogueUI>();
+        m_dialogueUI = m_mainUI.GetComponentInChildren<DialogueUI>();
 
         m_killCount = 0;
     }
@@ -116,8 +119,14 @@ public class GameWorld : MonoBehaviour
         // More Initialization
         LocalInitializePlayer();
         if (isHost)
+        {
             InitializeEnemies();
-        m_missionUI.InitializeMainUI(m_enemyList.Count);
+        }
+        else 
+        {
+            LocalInitializeEnemies();
+        }
+        m_missionUI.InitializeMainUI(m_totalEnemyCount);
         m_dialogueUI.InitializeDialogueUI();
 
         // Deal with events
@@ -179,6 +188,17 @@ public class GameWorld : MonoBehaviour
         m_totalEnemyCount += 1;
         NetworkServer.Spawn(ret);
         return ret;
+    }
+
+    void LocalInitializeEnemies() 
+    {
+        m_enemyList = new List<GameObject>();
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy")) 
+        {
+            m_enemyList.Add(enemy);
+            enemy.GetComponent<BaseEnemyController>().InitializeOnDeath();
+            m_totalEnemyCount += 1;
+        }
     }
 
     void OnEnemyKilled(Event_Enemy_Die evt)
