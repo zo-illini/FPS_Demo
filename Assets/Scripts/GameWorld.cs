@@ -146,7 +146,7 @@ public class GameWorld : MonoBehaviour
             {
                 m_player = player;
                 if (m_playerStart)
-                    player.GetComponent<PlayerCharacterController>().CmdInitializePosition(m_playerStart.transform.position, m_playerStart.transform.rotation);
+                    player.GetComponent<PlayerCharacterController>().CmdTeleportPlayer(m_playerStart.transform.position, m_playerStart.transform.rotation);
                 // Show player health bar
                 m_player.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
                 m_player.GetComponentInChildren<Health>().InitializeUI();

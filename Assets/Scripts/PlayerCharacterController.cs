@@ -93,7 +93,7 @@ public class PlayerCharacterController : NetworkBehaviour
     }
 
     [Command]
-    public void CmdInitializePosition(Vector3 pos, Quaternion rot) 
+    public void CmdTeleportPlayer(Vector3 pos, Quaternion rot) 
     {
         transform.position = pos;
         transform.rotation = rot;

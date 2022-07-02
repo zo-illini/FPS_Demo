@@ -14,7 +14,7 @@ public class AcrossTheSea : Interactable
             {
                 if (player.GetComponent<PlayerCharacterController>().isLocalPlayer) 
                 {
-                    player.transform.position += new Vector3(8, 0, 0);
+                    player.GetComponent<PlayerCharacterController>().CmdTeleportPlayer(player.transform.position + new Vector3(8, 0, 0), player.transform.rotation);
                 }
             }
         }

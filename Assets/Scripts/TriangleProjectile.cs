@@ -31,7 +31,6 @@ public class TriangleProjectile : Projectile
             {
                 if (m_player)
                 {
-                    Debug.Log(m_player.name);
                     Vector3 playerDir = (m_player.transform.position - transform.position);
                     if (playerDir.magnitude < 1.0f)
                     {
