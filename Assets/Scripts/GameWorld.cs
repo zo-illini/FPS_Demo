@@ -76,7 +76,8 @@ public class GameWorld : MonoBehaviour
         m_tempCamera.AddComponent<Camera>();
 
         // Create Mission UI
-        m_missionUI = m_mainUI.GetComponentInChildren<Text>().gameObject.AddComponent<MissionUI>();
+        //m_missionUI = m_mainUI.GetComponentInChildren<Text>().gameObject.AddComponent<MissionUI>();
+        m_missionUI = m_mainUI.GetComponentInChildren<MissionUI>();
 
         // Creaate Dialogue UI
         //m_dialogueUI = GetComponentInChildren<Image>().gameObject.AddComponent<DialogueUI>();
@@ -128,7 +129,7 @@ public class GameWorld : MonoBehaviour
         }
         m_missionUI.InitializeMainUI(m_totalEnemyCount);
         m_dialogueUI.InitializeDialogueUI();
-
+            
         // Deal with events
         EventManager.AddListener<Event_Enemy_Die>(OnEnemyKilled);
         EventManager.AddListener<Event_Win>(OnWin);

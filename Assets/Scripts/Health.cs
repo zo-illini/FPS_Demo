@@ -46,7 +46,7 @@ public class Health : NetworkBehaviour
             m_onDeath.Invoke();
             m_active = false;
         }
-        if (m_active && m_hasUI)
+        if (m_hasUI)
             UpdateHealthUI();
     }
 
@@ -60,6 +60,7 @@ public class Health : NetworkBehaviour
         if (isServer) 
         {
             m_curHealth -= damage;
+            m_curHealth = m_curHealth < 0 ? 0 : m_curHealth;
         }
     }
 

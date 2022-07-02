@@ -93,7 +93,7 @@ public class BaseEnemyController : NetworkBehaviour
         Event_Enemy_Die evt = new Event_Enemy_Die();
         evt.m_enemy = this.gameObject;
         EventManager.Broadcast(evt);
-        Destroy(this.gameObject);
+        StartCoroutine(WaitToDestroy(0.5f));
     }
 
     public void SetProtected(bool isProtected)
@@ -107,5 +107,11 @@ public class BaseEnemyController : NetworkBehaviour
     {
         m_health = GetComponent<Health>();
         m_health.SetOnDeath(OnEnemyKilled);
+    }
+
+    IEnumerator WaitToDestroy(float time) 
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(this.gameObject);
     }
 }

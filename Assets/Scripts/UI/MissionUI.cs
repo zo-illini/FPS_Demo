@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-public class MissionUI : NetworkBehaviour
+public class MissionUI : MonoBehaviour
 {
     Text m_missionText;
     
-    [SyncVar]
     int m_remainingEnemyCount;
 
     public void InitializeMainUI(int EnemyCount) 
@@ -36,6 +35,7 @@ public class MissionUI : NetworkBehaviour
     // For local client update
     private void Update()
     {
+        /*
         if (m_missionText) 
         {
             if (m_remainingEnemyCount != 0)
@@ -47,6 +47,7 @@ public class MissionUI : NetworkBehaviour
                 m_missionText.text = "任务完成";
             }
         }
+        */
     }
 
 
