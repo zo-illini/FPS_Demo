@@ -70,6 +70,11 @@ public class PlayerCharacterController : NetworkBehaviour
             {
                 EventManager.Broadcast(Events.EventPlayerInteract);
             }
+
+            if (m_input.GetPause()) 
+            {
+                FindObjectOfType<GameWorld>().PauseGame();
+            }
         }
         
     }

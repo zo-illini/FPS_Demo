@@ -610,7 +610,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.004180908, y: -139}
-  m_SizeDelta: {x: 300, y: 100}
+  m_SizeDelta: {x: 320, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8572850945239877202
 CanvasRenderer:
@@ -654,4 +654,4 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "WASD\u79FB\u52A8\uFF0C\u5DE6\u952E\u5C04\u51FB\uFF0C\u6EDA\u8F6E\u5207\u6362\u6B66\u5668,
-    E\u952E\u8FDB\u884C\u4EA4\u4E92\u4E0E\u63A8\u8FDB\u5BF9\u8BDD"
+    E\u952E\u8FDB\u884C\u4EA4\u4E92\u4E0E\u63A8\u8FDB\u5BF9\u8BDD\uFF0C\u5355\u673A\u6A21\u5F0F\u4E0B\u4F7F\u7528q\u952E\u6682\u505C"

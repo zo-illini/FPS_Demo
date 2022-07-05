@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -93,6 +93,7 @@ public class BaseEnemyController : NetworkBehaviour
         Event_Enemy_Die evt = new Event_Enemy_Die();
         evt.m_enemy = this.gameObject;
         EventManager.Broadcast(evt);
+        //不立刻销毁object，规避网络延迟
         StartCoroutine(WaitToDestroy(0.5f));
     }
 

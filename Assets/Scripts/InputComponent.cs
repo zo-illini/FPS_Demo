@@ -43,4 +43,9 @@ public class InputComponent : MonoBehaviour
     {
         return Input.mouseScrollDelta != Vector2.zero;
     }
+
+    public bool GetPause() 
+    {
+        return Input.GetKeyDown(KeyCode.Q);
+    }
 }

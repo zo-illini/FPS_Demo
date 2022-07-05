@@ -40,6 +40,8 @@ public class GameWorld : MonoBehaviour
 
     public DialogueUI m_dialogueUI;
 
+    PauseUI m_pauseUI;
+
     Canvas m_canvas;
 
     Button m_startButtonServer;
@@ -51,6 +53,8 @@ public class GameWorld : MonoBehaviour
     int m_totalEnemyCount;
 
     int m_killCount;
+
+    bool m_isGamePaused;
 
     public List<GameObject> m_enemyList {get; private set;}
 
@@ -82,8 +86,11 @@ public class GameWorld : MonoBehaviour
         // Creaate Dialogue UI
         //m_dialogueUI = GetComponentInChildren<Image>().gameObject.AddComponent<DialogueUI>();
         m_dialogueUI = m_mainUI.GetComponentInChildren<DialogueUI>();
+        m_pauseUI = m_mainUI.GetComponentInChildren<PauseUI>();
 
         m_killCount = 0;
+
+        m_isGamePaused = false;
     }
 
     // Update is called once per frame
@@ -246,6 +253,18 @@ public class GameWorld : MonoBehaviour
         {
             Application.Quit();
         }
+    }
+
+    public void PauseGame() 
+    {
+        if (NetworkServer.connections.Count != 1)
+            return;
+
+        m_isGamePaused = !m_isGamePaused;
+
+        Time.timeScale = m_isGamePaused ? 0 : 1;
+        m_pauseUI.UpdateUI(m_isGamePaused);
+
     }
 }
 
